@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Navbar css start*/
+
+        /* Import Poppins font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+        * {
+            font-family: 'Poppins', sans-serif;
+            /* Apply Poppins font to all elements */
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            /* background-color: #f8f9fa; */
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Navbar Styles  */
+
+        nav {
+            border-bottom: 1px solid black;
+        }
+
+        .navbar-brand img {
+            height: auto;
+        }
+
+        /* Notification icon styling */
+        .bi-bell-fill {
+            color: #007bff;
+        }
+
+        /* Notification dot */
+        .position-absolute {
+            top: 0;
+            right: 0;
+            width: 8px;
+            height: 8px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        /* Profile picture and dropdown */
+        .dropdown-toggle img {
+            margin-right: 8px;
+        }
+
+        .dropdown-menu {
+            min-width: 200px;
+        }
+
+        @media (max-width: 320px) {
+            .dropdown .ms-2 {
+                font-size: 0.8rem;
+                /* Adjust the font size as needed */
+            }
+
+            .dropdown .fa-sharp {
+                font-size: 0.8rem;
+                /* Adjust the icon size as needed */
+            }
+        }
+
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 0;
+                /* Padding for mobile */
+            }
+
+            .navbar-brand img {
+                width: 150px;
+                /* Smaller logo for mobile */
+            }
+
+            .dropdown .text-end {
+                text-align: left;
+                /* Align text to the left on mobile */
+            }
+
+            .dropdown-menu {
+                position: absolute;
+                /* Dropdown appears above other content */
+            }
+        }
+
+        /* Main Content Section Stylling */
+        .profile-image {
+            border-radius: 8px;
+        }
+
+        .custom-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .custom-section {
+            margin-top: 15%;
+            margin-left: 5%;
+        }
+
+        .custom-card h6 {
+            font-weight: bold;
+        }
+
+        .btn-custom {
+            background-color: #00aaff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* footer css */
+        .footer {
+            margin: 0 auto;
+            /* Center the footer */
+            max-width: 100%;
+            /* Ensure it doesn’t exceed the width */
+            background-color: #F3F3F3;
+            /* Light background for footer */
+            padding: 40px 0;
+            /* Vertical padding */
+            border-top: 1px solid #e0e0e0;
+            /* Light top border */
+            overflow: hidden;
+            /* Prevent overflow */
+        }
+
+        .footer h5 {
+            font-weight: bold;
+            /* Bold titles */
+        }
+
+        .footer a {
+            color: #000;
+            /* Black color for links */
+            text-decoration: none;
+            /* Remove underline */
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+            /* Underline on hover */
+        }
+
+        .footer .social-icons a {
+            margin: 0 10px;
+            /* Space between social icons */
+            color: #000;
+            /* Black color for social icons */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container-fluid">
+            <div class="row w-100 align-items-center header">
+                <!-- LOGO Section (col-lg-3) -->
+                <div class="col-lg-3 col-6">
+                    <a class="navbar-brand" href="#">
+                        <img src="Assets/images/logo.png" alt="Bonstay" width="200" class="img-fluid" />
+                    </a>
+                </div>
+                <!-- Empty col-lg-6 for spacing -->
+                <div class="col-lg-6 d-none d-lg-block"></div>
+                <!-- Notifications and User Profile in col-lg-4 -->
+                <div class="col-lg-3 col-6 d-flex justify-content-end align-items-center">
+                    <!-- Switch To hosting link -->
+                    <a href="#" class="text-dark" style="margin-left: -40%; margin-right: auto;;">Switch to hosting</a>
+                    <!-- Notifications Icon -->
+                    <a href="#" class="nav-link position-relative me-3">
+                        <i class="bi bi-bell-fill" style="font-size: 1.5rem; color: #007bff"></i>
+                        <span
+                            class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+                            <span class="visually-hidden">New alerts</span>
+                        </span>
+                    </a>
+                    <!-- User Profile -->
+                    <div class="dropdown">
+                        <a class="d-flex align-items-center text-decoration-none" href="#" id="navbarDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="Assets/images/profile-pic-mark.png" alt="Profile Picture" class="rounded-circle"
+                                width="40" height="40" />
+                            <div class="ms-2">
+                                <span class="text-dark">Mark William</span><br />
+                                <small class="text-dark">Employee</small>
+                                <!-- Dropdown icon -->
+                                <i class="fa-sharp fa-solid fa-caret-down text-dark ms-1"></i>
+                                <br />
+                                <!-- Small text for Employee -->
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Notifications</a></li>
+                            <li><a class="dropdown-item" href="#">Messages</a></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item" href="#">Gift cards</a></li>
+                            <li class="px-3 text-muted">
+                                Bonstay credits can be applied to gift card
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li>
+                                <a class="dropdown-item" href="#">Switch for hosting</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- main content Section -->
+    <div class="container my-5">
+        <div class="row">
+            <!-- Left Section -->
+            <div class="col-md-4">
+                <!-- Profile Image -->
+                <img src="Assets/Images/mark-pic.png" alt="Profile Image" class="img-fluid profile-image mb-4">
+
+                <!-- Profile Details -->
+                <h2>Mark William</h2>
+                <p class="text-muted">Guest</p>
+
+                <!-- Confirmed Information Card -->
+                <div class="custom-card">
+                    <h6>Mark William's confirmed information</h6>
+                    <p><i class="bi bi-check-circle-fill text-success"></i> Email address</p>
+                    <hr>
+                    <h6>Verify your identity</h6>
+                    <p>Before you book or host on Bonstay, you’ll need to complete this step.</p>
+                    <button class="btn btn-outline-secondary">Get Verified</button>
+                </div>
+            </div>
+
+            <!-- Right Section -->
+            <div class="col-md-6 custom-section">
+                <!-- Subscription Info -->
+                <h6 class="fw-bold">1 Month on Bonstay</h6>
+                <hr>
+                <h6 class="fw-bold">Mark William's confirmed information</h6>
+                <p>Completing your profile allows Bonstay and its hosts to elevate future travels with personalized
+                    discounts and unique promotions designed specifically for you.</p>
+
+                <button class="btn-custom">Create Profile</button>
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+    <div class="footer">
+        <div class="row justify-content-between align-items-center text-center"> <!-- Center text within the row -->
+            <div class="col-md-6">
+                <p class="mb-0 d-inline fs-6">&copy; 2024 Bonstay</p>
+                <div class="footer-links d-inline">
+                    <a href="#" class="text-decoration-none mx-2">Terms</a>
+                    <span class="mx-2">|</span>
+                    <a href="#" class="text-decoration-none mx-2">Sitemap</a>
+                    <span class="mx-2">|</span>
+                    <a href="#" class="text-decoration-none mx-2">Privacy</a>
+                    <span class="mx-2">|</span>
+                    <a href="#" class="text-decoration-none mx-2">Your Privacy Choices</a>
+                </div>
+            </div>
+            <div class="col-md-6 social-icons">
+                <a href="#"><i class="fa-solid fa-globe"> English</i></a>
+                <a href="#" class="mx-5"><i class="fa-solid fa-dollar-sign"> USD</i> </a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.3/font/bootstrap-icons.min.css">
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

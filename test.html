@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"
+        rel="stylesheet">
+    <style>
+        .profile-image {
+            width: 180px;
+            /* Increase size for better resolution */
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .profile-image-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-image-container .change-btn {
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.6);
+            /* Slightly transparent background */
+            color: white;
+            border-radius: 50%;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 18px;
+            border: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-image-container .change-btn i {
+            margin-right: 4px;
+        }
+
+        .section-header {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .dashed-border-box {
+            border: 2px dashed #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .form-select {
+            padding-left: 40px;
+        }
+
+        .select-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+        }
+
+        .help-text {
+            font-size: 14px;
+            color: #6c757d;
+        }
+
+        .activity-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            text-align: center;
+            display: inline-block;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+
+        .activity-btn i {
+            margin-right: 8px;
+        }
+
+        .activity-btn:hover {
+            background-color: #f8f9fa;
+            border-color: #ccc;
+        }
+
+        .select-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-text {
+            font-size: 14px;
+            color: #6c757d;
+        }
+
+        .section-header {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .icon-box {
+            border: 1px solid #ddd;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .icon-box:hover {
+            background-color: #f0f0f0;
+        }
+
+        .icon-box svg {
+            width: 40px;
+            height: 40px;
+            fill: #666;
+        }
+
+        .done-btn {
+            background-color: #00a1e4;
+            color: white;
+            width: 100%;
+        }
+
+        .done-btn:hover {
+            background-color: #008ec1;
+        }
+
+        /* Toggle button styling */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 52px;
+            height: 28px;
+            margin-top: -11%;
+            margin-right: 17%
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: #00a1e4;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(24px);
+        }
+
+        .toggle-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        /* Positioning and padding for the text and toggle */
+        .toggle-container .toggle-text {
+            margin-right: 15px;
+        }
+
+        .icon-box {
+            border: 1px solid #ddd;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .icon-box:hover {
+            background-color: #f0f0f0;
+        }
+
+        .icon-box svg {
+            width: 40px;
+            height: 40px;
+            fill: #666;
+        }
+
+        .done-btn {
+            background-color: #00a1e4;
+            color: white;
+            width: 100%;
+        }
+
+        .done-btn:hover {
+            background-color: #008ec1;
+        }
+
+        /* Toggle button styling */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 52px;
+            height: 28px;
+            margin-top: -11%;
+            margin-right: 17%
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: #00a1e4;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(24px);
+        }
+
+        .toggle-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        /* Positioning and padding for the text and toggle */
+        .toggle-container .toggle-text {
+            margin-right: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container my-5">
+        <!-- Profile Section -->
+        <div class="text-center">
+            <div class="profile-image-container">
+                <img src="Assets/Images/form-pp.png" alt="Profile Image" class="profile-image">
+                <button class="change-btn">
+                    <i class="bi bi-camera"></i> Change
+                </button>
+            </div>
+            <h2 class="mt-4">Your profile</h2>
+            <p class="text-muted">The information you share will be used across Bonstay to help other guests and Hosts
+                get to know you. <a href="#">Learn more</a></p>
+        </div>
+
+        <!-- Desired Destination Section -->
+        <div class="mt-5">
+            <h4 class="section-header">Desired Destination</h4>
+            <p class="text-muted">Describe your favorite travel destinations and places you'd love to experience.</p>
+            <div class="dashed-border-box">
+                <strong>Kyoto, Japan:</strong> Nestled in tradition and modernity, Kyoto is a tapestry of ancient
+                temples, serene gardens, and vibrant festivals. Walking through the historic Gion district or
+                experiencing the tranquility of the Arashiyama Bamboo Grove is like stepping back in time.
+            </div>
+        </div>
+
+        <!-- Form Section -->
+        <div class="row mt-4">
+            <!-- travel InputS -->
+            <div class="col-md-6 position-relative mb-3">
+                <i class="bi bi-calendar-check select-icon"></i>
+                <select class="form-select">
+                    <option selected>Travel Frequency</option>
+                    <option value="1">Once a Month</option>
+                    <option value="2">Twice a Year</option>
+                    <option value="3">Rarely</option>
+                </select>
+            </div>
+            <div class="col-md-6 position-relative mb-3">
+                <i class="bi bi-geo-alt select-icon"></i>
+                <select class="form-select">
+                    <option selected>I Travel Mostly For</option>
+                    <option value="1">Business</option>
+                    <option value="2">Leisure</option>
+                    <option value="3">Other</option>
+                </select>
+            </div>
+            <div class="col-md-6 position-relative mb-3">
+                <i class="bi bi-airplane select-icon"></i>
+                <select class="form-select">
+                    <option selected>Airlines</option>
+                    <option value="1">Delta</option>
+                    <option value="2">American Airlines</option>
+                    <option value="3">Other</option>
+                </select>
+            </div>
+
+            <!-- Entertainment Input -->
+            <div class="col-md-6 position-relative mb-3">
+                <i class="bi bi-music-note-beamed select-icon"></i>
+                <select class="form-select">
+                    <option selected>Entertainment</option>
+                    <option value="1">Movies</option>
+                    <option value="2">Concerts</option>
+                    <option value="3">Theater</option>
+                </select>
+            </div>
+            <!-- Returant Input -->
+            <div class="col-md-12 position-relative mb-3">
+                <i class="bi bi-shop select-icon"></i>
+                <select class="form-select">
+                    <option selected>Restaurants</option>
+                    <option value="1">Italian</option>
+                    <option value="2">Japanese</option>
+                    <option value="3">Indian</option>
+                </select>
+            </div>
+            <!-- Help Text -->
+            <p class="help-text ">Didn't find what you're looking for? Feel free to include your favorite dining
+                spots (with location) where you love to enjoy life. We'll strive to incorporate them into our
+                database for more savings.
+            </p>
+            <!-- Shopping Input -->
+            <div class="col-md-12 position-relative mb-3">
+                <i class="bi bi-cart4 select-icon"></i>
+                <select class="form-select">
+                    <option selected>Shopping</option>
+                    <option value="1"></option>
+                    <option value="2"></option>
+                    <option value="3"></option>
+                </select>
+            </div>
+            <!-- Help Text -->
+            <p class="help-text">Didn't find what you're looking for? Share your favorite shopping destinations with
+                Bonstay. We'll work to add them to our database for additional savings.
+            </p>
+            <!-- Activity Input -->
+            <div class="col-md-12 position-relative mb-3">
+                <i class="bi bi-heart select-icon"></i>
+                <select class="form-select">
+                    <option selected>Activities</option>
+                    <option value="1"></option>
+                    <option value="2"></option>
+                    <option value="3"></option>
+                </select>
+            </div>
+            <!-- Help Text -->
+            <p class="help-text">Didn't find what you're looking for? Share your favorite activity destination with
+                Bonstay. We'll work to add them to our database for future savings.
+            </p>
+            <!-- Transpotation Input -->
+            <div class="col-md-12 position-relative mb-3">
+                <i class="bi bi-bus-front-fill select-icon"></i>
+                <select class="form-select">
+                    <option selected>Transportation</option>
+                    <option value="1"></option>
+                    <option value="2"></option>
+                    <option value="3"></option>
+                </select>
+            </div>
+            <!-- Help Text -->
+            <p class="help-text">Didn't find what you're looking for? Share your favorite transportation company with
+                Bonstay. We'll work to add them to our database for extra savings.
+            </p>
+            <!-- Bonstay Credit Club Section -->
+            <div>
+                <h2 class="section-header">Bonstay Credit Club</h2>
+                <div class="select-container mt-4">
+                    <button class="activity-btn">
+                        <i class="bi bi-wallet2"></i> Current Bonstay Credits
+                    </button>
+                    <select class="form-select" aria-label="Bonstay Credit Club Select">
+                        <option selected>Bonstay Credit Club</option>
+                        <option value="1">Gold Member</option>
+                        <option value="2">Silver Member</option>
+                        <option value="3">Bronze Member</option>
+                    </select>
+                </div>
+                <p class="info-text mt-3">Didn’t find what you’re looking for? Share your favorite activity destination
+                    with
+                    Bonstay. We’ll work to add them to our database for future savings.</p>
+            </div>
+            <!-- Additional Information Section -->
+            <div>
+                <h4 class="section-header">Provide additional information that would help Bonstay and hosts optimize
+                    your
+                    travel experiences.</h4>
+                <div class="row mt-4">
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <button class="activity-btn">
+                            <i class="bi bi-building"></i> Architecture
+                        </button>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <button class="activity-btn">
+                            <i class="bi bi-egg-fried"></i> Foods
+                        </button>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <button class="activity-btn">
+                            <i class="bi bi-clock-history"></i> History
+                        </button>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <button class="activity-btn">
+                            <i class="bi bi-music-note-beamed"></i> Live Music
+                        </button>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <button class="activity-btn">
+                            <i class="bi bi-building"></i> Architecture
+                        </button>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <button class="activity-btn">
+                            <i class="bi bi-collection"></i> Museums
+                        </button>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <button class="activity-btn">
+                            <i class="bi bi-tree"></i> Outdoors
+                        </button>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <button class="activity-btn">
+                            <i class="bi bi-camera"></i> Photography
+                        </button>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <button class="activity-btn">
+                            <i class="bi bi-book"></i> Reading
+                        </button>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <button class="activity-btn">
+                            <i class="bi bi-bag"></i> Shopping
+                        </button>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <button class="activity-btn">
+                            <i class="bi bi-film"></i> Theater
+                        </button>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <button class="activity-btn">
+                            <i class="bi bi-water"></i> Water Sports
+                        </button>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <button class="activity-btn">
+                            <i class="bi bi-water"></i> Water Sports
+                        </button>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <button class="activity-btn">
+                            <i class="bi bi-bicycle"></i> Yoga
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                <h3>Where you've been</h3>
+                <p>Choose whether other people can see all the places you’ve been on Bonstay.</p>
+            </div>
+
+            <!-- Toggle button container -->
+            <div class="toggle-container">
+
+                <label class="toggle-switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <!-- Icon boxes -->
+            <div class="row justify-content-center mb-4">
+                <div class="col-md-2">
+                    <div class="icon-box">
+                        <!-- World icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="51.512" height="51.506"
+                            viewBox="0 0 51.512 51.506">
+                            <g id="Group_246" data-name="Group 246" transform="translate(-1958.568 -511.32)">
+                                <path id="Path_601" data-name="Path 601"
+                                    d="M1984.34,511.32a25.753,25.753,0,1,1-25.771,25.723A25.773,25.773,0,0,1,1984.34,511.32Zm-18.553,11.091c-2.567,2.427-5.339,9.845-5.091,13.6h11.271a52.131,52.131,0,0,1,1.3-10.621A31.292,31.292,0,0,1,1965.786,522.411Zm37.126-.029a31.917,31.917,0,0,1-7.532,3.017,52.093,52.093,0,0,1,1.3,10.6H2008A23.794,23.794,0,0,0,2002.912,522.381Zm-29.642,26.375a52.007,52.007,0,0,1-1.308-10.626H1960.7c-.272,3.694,2.5,11.116,5.086,13.607A31.219,31.219,0,0,1,1973.27,548.756Zm22.108,0a31.983,31.983,0,0,1,7.543,3.007,23.836,23.836,0,0,0,5.073-13.623h-11.312A51.9,51.9,0,0,1,1995.378,548.752Zm-12.116-12.735v-9.137l-8.008-.9a47.687,47.687,0,0,0-1.223,10.036Zm-9.233,2.113a47.366,47.366,0,0,0,1.227,10.03l8-.891V538.13Zm20.589-2.111a47.257,47.257,0,0,0-1.23-10.032l-8.008.89v9.142Zm-9.246,11.246,8.021.9a47.8,47.8,0,0,0,1.222-10.023h-9.242Zm0,13.368c.308-.111.587-.19.846-.31a7.985,7.985,0,0,0,2.8-2.293,20.052,20.052,0,0,0,3.239-6.039c.2-.554.377-1.117.578-1.714a41.884,41.884,0,0,0-7.465-.827Zm.021-47.1v11.27l7.544-.836c-.543-1.4-.978-2.635-1.5-3.836a14.714,14.714,0,0,0-3.5-5.152A5.819,5.819,0,0,0,1985.4,513.538Zm-2.134,11.142V513.555a1.527,1.527,0,0,0-.234.036c-.146.048-.291.1-.433.161a7.877,7.877,0,0,0-3.017,2.421,20.138,20.138,0,0,0-3.184,5.953c-.2.558-.38,1.127-.568,1.69A35.3,35.3,0,0,0,1983.261,524.68Zm-7.385,25.472-.1.222c.484,1.241.922,2.5,1.462,3.719a14.591,14.591,0,0,0,3.492,5.093,5.728,5.728,0,0,0,2.523,1.42V549.339Zm25.658,3.209a28.179,28.179,0,0,0-6.686-2.611,24.221,24.221,0,0,1-4.854,9.327A23.939,23.939,0,0,0,2001.535,553.361ZM1973.8,523.4a24.183,24.183,0,0,1,4.848-9.329,23.838,23.838,0,0,0-11.528,6.714A28.487,28.487,0,0,0,1973.8,523.4Zm27.732-2.615a23.874,23.874,0,0,0-11.545-6.719,24.136,24.136,0,0,1,4.866,9.336A28.7,28.7,0,0,0,2001.532,520.785Zm-22.883,39.288a24.23,24.23,0,0,1-4.855-9.329,27.936,27.936,0,0,0-6.673,2.624A23.9,23.9,0,0,0,1978.649,560.073Z"
+                                    transform="translate(0)" fill="#6d7278" />
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="icon-box">
+                        <!-- Map pin icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="57.749" height="57.758"
+                            viewBox="0 0 57.749 57.758">
+                            <g id="Group_247" data-name="Group 247" transform="translate(-1119.062 153.359)">
+                                <path id="Path_602" data-name="Path 602"
+                                    d="M1119.062-111.223c.184-1.048.3-2.112.562-3.141a14.071,14.071,0,0,1,11.271-10.18,13.769,13.769,0,0,1,13.858,5.741,13.566,13.566,0,0,1,2.543,9.906,21.947,21.947,0,0,1-3.08,8.631c-.316.545-.771.7-1.221.444a.856.856,0,0,1-.246-1.272,22.754,22.754,0,0,0,2.431-5.675c1.307-5.178.2-9.692-3.849-13.3a12.419,12.419,0,0,0-17.157.939c-3.322,3.665-4.074,7.908-2.794,12.591a24.476,24.476,0,0,0,3.771,7.575,47.82,47.82,0,0,0,8.119,8.777c.952-.883,1.954-1.705,2.827-2.647,1.581-1.706,3.09-3.481,4.622-5.233.429-.491.915-.606,1.319-.278s.409.837-.011,1.348c-.989,1.206-2,2.4-3,3.593-.131.157-.265.311-.4.465.823.358,1.64.669,2.412,1.067a5.47,5.47,0,0,1,1.264.928,2.616,2.616,0,0,1-.051,4.055,8.622,8.622,0,0,1-4.139,1.925c-1.15.259-2.327.393-3.493.584h-2.82c-1.145-.19-2.3-.326-3.431-.584a8.642,8.642,0,0,1-4.137-1.922,2.606,2.606,0,0,1-.059-4.051,5.474,5.474,0,0,1,1.26-.931c.774-.4,1.593-.712,2.423-1.074-.126-.149-.262-.3-.388-.459-1.444-1.823-2.984-3.581-4.307-5.487a22,22,0,0,1-3.825-9.047c-.117-.717-.19-1.441-.283-2.161Zm14.416,25.169c.687-.06,1.8-.1,2.892-.265a9.82,9.82,0,0,0,4.417-1.555c1.014-.736,1.06-1.527-.024-2.157a24.93,24.93,0,0,0-3.137-1.332.681.681,0,0,0-.794.2c-.936.869-1.9,1.713-2.862,2.548a.93.93,0,0,1-1.446,0c-.623-.514-1.241-1.035-1.84-1.578-1.575-1.425-1.583-1.459-3.582-.592a7.543,7.543,0,0,0-1.831,1.168c-.492.415-.466.862,0,1.317a5.079,5.079,0,0,0,1.218.886A16.317,16.317,0,0,0,1133.478-86.055Z"
+                                    transform="translate(0 -11.222)" fill="#6d7278" />
+                                <path id="Path_603" data-name="Path 603"
+                                    d="M1193.138-128.8c.637.3,1.207.536,1.744.832a4.034,4.034,0,0,1,.891.68,2.206,2.206,0,0,1-.022,3.34,6.124,6.124,0,0,1-2.929,1.491,15.584,15.584,0,0,1-9.315-.337,6.233,6.233,0,0,1-1.955-1.179,2.1,2.1,0,0,1-.015-3.308,12.066,12.066,0,0,1,2.045-1.254,4.193,4.193,0,0,1,.592-.226c-.175-.2-.311-.372-.453-.531a26.116,26.116,0,0,1-5.264-8.268,14.435,14.435,0,0,1-.886-4.568.85.85,0,0,1,.8-.971.791.791,0,0,1,.871.827c.162,4.275,2.265,7.69,4.89,10.831,1.368,1.636,2.929,3.111,4.414,4.671a37.992,37.992,0,0,0,5.228-5.412,20.539,20.539,0,0,0,3.886-7.307,9.469,9.469,0,0,0-7.25-12,9.374,9.374,0,0,0-10.067,4.889c-.1.2-.2.4-.313.6a.862.862,0,0,1-1.209.465.827.827,0,0,1-.283-1.221,15.108,15.108,0,0,1,1.633-2.616,10.556,10.556,0,0,1,10.939-3.665,10.656,10.656,0,0,1,8.372,8.5,11.928,11.928,0,0,1-.606,6.866,25.517,25.517,0,0,1-5.146,8.208C1193.542-129.252,1193.356-129.042,1193.138-128.8Zm-4.255,5.2c.562-.051,1.385-.112,2.2-.207a4.548,4.548,0,0,0,1.152-.241,14.131,14.131,0,0,0,2.178-1.006c.571-.35.571-.824,0-1.144a19.951,19.951,0,0,0-2.505-1.08c-.116-.045-.345.094-.472.2-.712.611-1.4,1.253-2.114,1.858a.881.881,0,0,1-1.355,0c-.465-.379-.915-.778-1.358-1.184-1.167-1.069-1.277-1.09-2.731-.407-.085.04-.172.076-.254.122-.466.261-1.126.431-1.113,1.058.014.6.638.827,1.122,1.063A12.565,12.565,0,0,0,1188.883-123.6Z"
+                                    transform="translate(-22.935)" fill="#6d7278" />
+                                <path id="Path_604" data-name="Path 604"
+                                    d="M1144.575-105.916a6.258,6.258,0,0,1-6.062,6.581,6.162,6.162,0,0,1-6.231-6.042,8.261,8.261,0,0,1,.21-1.671.845.845,0,0,1,1.026-.721.853.853,0,0,1,.607,1.1,4.476,4.476,0,0,0,1,4.15,4.438,4.438,0,0,0,6.144.442,4.43,4.43,0,0,0,.683-6.12,4.426,4.426,0,0,0-5.955-1.026,1.89,1.89,0,0,1-.66.288.75.75,0,0,1-.869-.554.812.812,0,0,1,.4-1.009,5.954,5.954,0,0,1,6.548-.351A5.78,5.78,0,0,1,1144.575-105.916Z"
+                                    transform="translate(-5.182 -16.344)" fill="#6d7278" />
+                                <path id="Path_605" data-name="Path 605"
+                                    d="M1197.532-138.288a4.961,4.961,0,0,1-4.916,4.926,4.97,4.97,0,0,1-4.917-4.929,4.937,4.937,0,0,1,4.919-4.913A4.93,4.93,0,0,1,1197.532-138.288Zm-4.909-3.219a3.219,3.219,0,0,0-3.229,3.213,3.258,3.258,0,0,0,3.219,3.24,3.246,3.246,0,0,0,3.225-3.23A3.209,3.209,0,0,0,1192.623-141.508Z"
+                                    transform="translate(-26.905 -3.981)" fill="#6d7278" />
+                                <path id="Path_606" data-name="Path 606"
+                                    d="M1184.941-91.137a5.9,5.9,0,0,1,.733.071.676.676,0,0,1,.609.8,1.111,1.111,0,0,1-.585.753,3.4,3.4,0,0,1-1.546,0,1.1,1.1,0,0,1-.595-.75.687.687,0,0,1,.611-.8A6.923,6.923,0,0,1,1184.941-91.137Z"
+                                    transform="translate(-25.276 -24.391)" fill="#6d7278" />
+                                <path id="Path_607" data-name="Path 607"
+                                    d="M1177.624-91.129a6.214,6.214,0,0,1,.683.063.739.739,0,0,1,.635.8.715.715,0,0,1-.643.789,7.321,7.321,0,0,1-1.395.014.738.738,0,0,1-.716-.839.753.753,0,0,1,.724-.782C1177.132-91.114,1177.357-91.113,1177.624-91.129Z"
+                                    transform="translate(-22.392 -24.394)" fill="#6d7278" />
+                                <path id="Path_608" data-name="Path 608"
+                                    d="M1192.2-89.4a5.461,5.461,0,0,1-.655-.06.758.758,0,0,1-.653-.793.727.727,0,0,1,.645-.794,6.719,6.719,0,0,1,1.341-.029.8.8,0,0,1,.8.842.808.808,0,0,1-.787.8C1192.678-89.411,1192.472-89.411,1192.2-89.4Z"
+                                    transform="translate(-28.155 -24.407)" fill="#6d7278" />
+                                <path id="Path_609" data-name="Path 609"
+                                    d="M1199.627-89.391a6.5,6.5,0,0,1-.724-.066.744.744,0,0,1-.642-.8.716.716,0,0,1,.64-.792,6.757,6.757,0,0,1,1.34-.025.786.786,0,0,1,.784.849.789.789,0,0,1-.781.8,5.762,5.762,0,0,1-.615,0Z"
+                                    transform="translate(-31.045 -24.408)" fill="#6d7278" />
+                                <path id="Path_610" data-name="Path 610"
+                                    d="M1186.015-65.746a5.165,5.165,0,0,1-.672,0,.772.772,0,0,1-.709-.751.711.711,0,0,1,.584-.837,5.946,5.946,0,0,1,1.555-.022.726.726,0,0,1,.627.862.771.771,0,0,1-.713.746,4.511,4.511,0,0,1-.673.006Z"
+                                    transform="translate(-25.702 -33.695)" fill="#6d7278" />
+                                <path id="Path_611" data-name="Path 611"
+                                    d="M1193.391-67.446a4.981,4.981,0,0,1,.618.005.794.794,0,0,1,.756.831.788.788,0,0,1-.762.826,6.749,6.749,0,0,1-1.234.007.8.8,0,0,1-.784-.8.832.832,0,0,1,.789-.862A5.356,5.356,0,0,1,1193.391-67.446Z"
+                                    transform="translate(-28.585 -33.674)" fill="#6d7278" />
+                                <path id="Path_612" data-name="Path 612"
+                                    d="M1170.774-105.89a2.646,2.646,0,0,1-1.47,1.627.788.788,0,0,1-.84-1.132,4.143,4.143,0,0,1,1.108-1.231A.793.793,0,0,1,1170.774-105.89Z"
+                                    transform="translate(-19.326 -18.267)" fill="#6d7278" />
+                                <path id="Path_613" data-name="Path 613"
+                                    d="M1212.624-76a11.742,11.742,0,0,1-.349,1.167.754.754,0,0,1-.967.461.715.715,0,0,1-.6-.826,7,7,0,0,1,.342-1.353.742.742,0,0,1,.944-.5C1212.453-76.942,1212.668-76.611,1212.624-76Z"
+                                    transform="translate(-35.921 -29.898)" fill="#6d7278" />
+                                <path id="Path_614" data-name="Path 614"
+                                    d="M1175.522-107.421a.847.847,0,0,1-1-.749.825.825,0,0,1,.843-.913,5.789,5.789,0,0,1,1.173-.036.792.792,0,0,1,.747.885.8.8,0,0,1-.815.767C1176.156-107.448,1175.839-107.436,1175.522-107.421Z"
+                                    transform="translate(-21.74 -17.335)" fill="#6d7278" />
+                                <path id="Path_615" data-name="Path 615"
+                                    d="M1168.465-98.689c0,.216.009.366,0,.515a.765.765,0,0,1-.685.767.713.713,0,0,1-.886-.508,4.478,4.478,0,0,1-.115-1.6.974.974,0,0,1,.718-.606,1.117,1.117,0,0,1,.8.514A2.356,2.356,0,0,1,1168.465-98.689Z"
+                                    transform="translate(-18.692 -20.869)" fill="#6d7278" />
+                                <path id="Path_616" data-name="Path 616"
+                                    d="M1171.375-91.208c-.643.015-1.82-.887-1.832-1.346a1.1,1.1,0,0,1,.315-.814.983.983,0,0,1,.861-.061,3.382,3.382,0,0,1,1.088.862,1.019,1.019,0,0,1,.122.863C1171.836-91.46,1171.5-91.311,1171.375-91.208Z"
+                                    transform="translate(-19.788 -23.464)" fill="#6d7278" />
+                                <path id="Path_617" data-name="Path 617"
+                                    d="M1200.478-65.831c-.69.021-1.091-.277-1.119-.8-.028-.538.31-.843.981-.89.3-.021.6-.069.894-.064a.816.816,0,0,1,.88.761.811.811,0,0,1-.783.908C1201.035-65.874,1200.735-65.856,1200.478-65.831Z"
+                                    transform="translate(-31.475 -33.623)" fill="#6d7278" />
+                                <path id="Path_618" data-name="Path 618"
+                                    d="M1163.979-67.289a5.49,5.49,0,0,1,.617,0,.757.757,0,0,1,.725.728.723.723,0,0,1-.612.869,5.915,5.915,0,0,1-1.448.032.75.75,0,0,1-.7-.86.779.779,0,0,1,.805-.776c.2-.012.411,0,.618,0Z"
+                                    transform="translate(-17.048 -33.736)" fill="#6d7278" />
+                                <path id="Path_619" data-name="Path 619"
+                                    d="M1207.971-88.157a.834.834,0,0,1-1.167.815,4.009,4.009,0,0,1-1.144-.793.978.978,0,0,1-.175-.884c.128-.247.624-.555.806-.477a8.412,8.412,0,0,1,1.564,1.014C1207.951-88.413,1207.952-88.213,1207.971-88.157Z"
+                                    transform="translate(-33.859 -25.029)" fill="#6d7278" />
+                                <path id="Path_620" data-name="Path 620"
+                                    d="M1178.656-65.719c-.187,0-.375.012-.561,0a.773.773,0,0,1-.806-.767.764.764,0,0,1,.744-.88,5.916,5.916,0,0,1,1.283,0,.76.76,0,0,1,.728.839.8.8,0,0,1-.828.807C1179.03-65.707,1178.842-65.72,1178.656-65.719Z"
+                                    transform="translate(-22.823 -33.694)" fill="#6d7278" />
+                                <path id="Path_621" data-name="Path 621"
+                                    d="M1171.391-67.376a5.219,5.219,0,0,1,.666.062.754.754,0,0,1,.634.809.731.731,0,0,1-.666.779,7.647,7.647,0,0,1-1.4.016.737.737,0,0,1-.713-.793.774.774,0,0,1,.743-.831C1170.881-67.362,1171.107-67.36,1171.391-67.376Z"
+                                    transform="translate(-19.934 -33.705)" fill="#6d7278" />
+                                <path id="Path_622" data-name="Path 622"
+                                    d="M1212.468-82.25c-.244.243-.448.609-.72.669a1.05,1.05,0,0,1-.9-.311,3.153,3.153,0,0,1-.512-1.4,1,1,0,0,1,.483-.814.979.979,0,0,1,.917.219A8.933,8.933,0,0,1,1212.468-82.25Z"
+                                    transform="translate(-35.777 -27.131)" fill="#6d7278" />
+                                <path id="Path_623" data-name="Path 623"
+                                    d="M1208.793-69.784a1.554,1.554,0,0,1-.26.485,6.582,6.582,0,0,1-1,.81.775.775,0,0,1-1.1-.2.733.733,0,0,1,.063-1.062,6.3,6.3,0,0,1,1.042-.846A.84.84,0,0,1,1208.793-69.784Z"
+                                    transform="translate(-34.172 -32.395)" fill="#6d7278" />
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="icon-box">
+                        <!-- Airplane icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="54.67" height="54.631"
+                            viewBox="0 0 54.67 54.631">
+                            <g id="Group_248" data-name="Group 248" transform="translate(-1151.787 -233.556)">
+                                <path id="Path_624" data-name="Path 624"
+                                    d="M1151.787,256.382c.179-.219.341-.454.54-.653q3.138-3.15,6.287-6.29a3.224,3.224,0,0,1,.4-.352.725.725,0,0,1,1.014.079.751.751,0,0,1,.082,1.018,2.546,2.546,0,0,1-.352.4q-3.144,3.144-6.291,6.286c-.687.686-1.005.694-1.676.048Z"
+                                    transform="translate(0 -10.055)" fill="#6d7278" />
+                                <path id="Path_625" data-name="Path 625"
+                                    d="M1194.252,237.6c.954.445.954.445,1.638-.238.34-.34.673-.685,1.021-1.017a2.518,2.518,0,0,1,3.969,3.065c-.025.046-.041.1-.078.187.6.181,1.192.362,1.785.538,1.464.435,2.934.851,4.389,1.314a.8.8,0,0,0,.924-.246c1.578-1.513,3.129-3.06,4.792-4.475a13.665,13.665,0,0,1,5.153-2.928,5.473,5.473,0,0,1,2.1-.215,3.182,3.182,0,0,1,2.761,3.889,11.785,11.785,0,0,1-2.032,4.59,37.274,37.274,0,0,1-5.587,6.287.807.807,0,0,0-.26.963c.6,1.913,1.158,3.84,1.731,5.762.035.117.081.232.136.386a2.737,2.737,0,0,1,1.977-.439,2.5,2.5,0,0,1,1.454,4.1c-.353.421-.764.795-1.152,1.185-.706.71-.708.708-.341,1.634a8.778,8.778,0,0,1,1.5-.255,2.3,2.3,0,0,1,2.188,1.435,2.328,2.328,0,0,1-.277,2.56,11.29,11.29,0,0,1-1.328,1.383.875.875,0,0,0-.288,1.057c.718,2.3,1.382,4.626,2.1,6.93a1.307,1.307,0,0,1-.4,1.563c-.51.441-.962.948-1.441,1.425-.742.739-1.148.712-1.758-.122l-9.611-13.124c-.336-.459-.676-.915-1.006-1.378-.391-.549-.361-1,.076-1.3.4-.275.847-.157,1.226.359q3.3,4.492,6.589,8.991l3.689,5.036c.069-.042.113-.065.154-.093a1.606,1.606,0,0,0,.6-2.108c-2.4-7.878-4.733-15.778-7.087-23.67-.054-.182-.127-.359-.2-.57l-7.678,7.026c.525.72,1.042,1.419,1.548,2.125.374.522.351.969-.048,1.271s-.865.186-1.236-.306c-.492-.652-.969-1.315-1.485-2.018l-1.254,1.08q-6.143,5.295-12.293,10.582a.569.569,0,0,0-.176.769c.671,1.7,1.3,3.417,1.988,5.112a1.167,1.167,0,0,1-.324,1.47c-.694.637-1.337,1.329-2.009,1.99a.88.88,0,0,1-1.466,0q-5.91-5.9-11.814-11.806c-.55-.55-.543-.942.012-1.5.689-.7,1.394-1.374,2.071-2.08a1.03,1.03,0,0,1,1.25-.265c1.752.687,3.514,1.351,5.268,2.035a.505.505,0,0,0,.686-.133q5.722-6.655,11.465-13.291c.079-.092.146-.194.235-.312l-6.557-4.8-13.174-9.637c-.868-.635-.9-1.025-.134-1.79.5-.5,1.027-.987,1.5-1.515a1.189,1.189,0,0,1,1.389-.333c2.378.728,4.767,1.418,7.144,2.149a.688.688,0,0,0,.831-.221c.331-.371.7-.712,1.052-1.061a2.573,2.573,0,0,1,3.342-.456,2.525,2.525,0,0,1,.8,3.307A.533.533,0,0,0,1194.252,237.6Zm-9.4,35.185c.13-.1.241-.189.349-.279,2.123-1.785,4.253-3.563,6.367-5.359,8.161-6.931,16.259-13.933,23.912-21.43a24.449,24.449,0,0,0,4.647-5.875,10.058,10.058,0,0,0,.972-2.627,1.652,1.652,0,0,0-2.021-2.058,5.517,5.517,0,0,0-1.135.282,13.361,13.361,0,0,0-4.352,2.64c-1.927,1.735-3.817,3.52-5.609,5.392-7.6,7.945-14.725,16.313-21.82,24.705-.9,1.07-1.8,2.149-2.682,3.208Zm-5.068-36.371,19.393,14.185,7.035-7.68c-.229-.079-.409-.148-.592-.2-7.879-2.347-15.764-4.674-23.63-7.065C1180.985,235.348,1180.294,235.4,1179.78,236.416Zm6.281,37.471,3.675,3.673c.359-.367.775-.754,1.14-1.185a.707.707,0,0,0,.121-.582c-.31-.887-.666-1.757-1.005-2.634-.24-.621-.479-1.243-.743-1.928ZM1185.026,267c-1.621-.622-3.157-1.215-4.7-1.793a.439.439,0,0,0-.366.08c-.467.4-.916.826-1.293,1.17l3.711,3.712Zm11.969-28.537c.7.209,1.251.38,1.807.538.092.026.256.038.288-.009a2.488,2.488,0,0,0,.543-.97c.024-.244-.272-.593-.516-.77a.8.8,0,0,0-1.016.181C1197.757,237.739,1197.43,238.06,1196.995,238.467Zm20.793,20.727c.186-.175.306-.277.414-.391a7.471,7.471,0,0,0,.779-.862.8.8,0,0,0-.164-1.1.823.823,0,0,0-1.074-.1c-.355.226-.639.469-.421.98C1217.514,258.168,1217.621,258.652,1217.788,259.194Zm-27.3-22.664,1.549.467a.535.535,0,0,0,.2.051.853.853,0,0,0,.418-.112.911.911,0,0,0,.1-1.288.863.863,0,0,0-1.24-.1C1191.178,235.823,1190.879,236.15,1190.483,236.53Zm29.261,29.25a13.1,13.1,0,0,0,1.056-1.154.822.822,0,0,0-.429-1.261,1.7,1.7,0,0,0-.935.168.524.524,0,0,0-.206.462C1219.359,264.557,1219.545,265.107,1219.745,265.78Z"
+                                    transform="translate(-16.301)" fill="#6d7278" />
+                                <path id="Path_626" data-name="Path 626"
+                                    d="M1272.175,375.814c-.262-.182-.559-.282-.637-.471a1.438,1.438,0,0,1,.027-.8c.03-.137.188-.251.3-.364q3.2-3.206,6.412-6.407c.125-.125.262-.315.406-.327a1.642,1.642,0,0,1,.922.1.649.649,0,0,1,.158.946,2.238,2.238,0,0,1-.339.407q-3.2,3.207-6.417,6.4A4.53,4.53,0,0,1,1272.175,375.814Z"
+                                    transform="translate(-78.352 -87.626)" fill="#6d7278" />
+                                <path id="Path_627" data-name="Path 627"
+                                    d="M1175.227,259.633a3.843,3.843,0,0,1-.422.7q-2.041,2.07-4.109,4.113a.811.811,0,1,1-1.113-1.152q2.03-2.043,4.073-4.073c.286-.285.63-.473,1-.246A2.93,2.93,0,0,1,1175.227,259.633Z"
+                                    transform="translate(-11.425 -16.568)" fill="#6d7278" />
+                                <path id="Path_628" data-name="Path 628"
+                                    d="M1274.775,358.035a3.612,3.612,0,0,1-.412.7q-2.04,2.071-4.108,4.113a.811.811,0,1,1-1.135-1.131c1.365-1.375,2.724-2.757,4.125-4.095a1.216,1.216,0,0,1,.947-.221C1274.411,357.444,1274.571,357.8,1274.775,358.035Z"
+                                    transform="translate(-76.587 -81.051)" fill="#6d7278" />
+                                <path id="Path_629" data-name="Path 629"
+                                    d="M1186.319,270.965c-.738-.061-1.068-.684-.765-1.194a2.635,2.635,0,0,1,.413-.483c.851-.857,1.7-1.713,2.563-2.56.445-.437.923-.474,1.266-.125s.321.8-.131,1.263c-.91.923-1.824,1.843-2.756,2.745A2.544,2.544,0,0,1,1186.319,270.965Z"
+                                    transform="translate(-22.029 -21.476)" fill="#6d7278" />
+                                <path id="Path_630" data-name="Path 630"
+                                    d="M1265.928,349.379c-.231-.2-.572-.349-.627-.571a1.157,1.157,0,0,1,.178-.909c.539-.634,1.16-1.2,1.75-1.788.377-.377.744-.763,1.134-1.126a.8.8,0,1,1,1.143,1.119q-1.432,1.468-2.9,2.9A3.324,3.324,0,0,1,1265.928,349.379Z"
+                                    transform="translate(-74.283 -72.737)" fill="#6d7278" />
+                            </g>
+                        </svg>
+
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="icon-box">
+                        <!-- Briefcase icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="51.279" height="51.504"
+                            viewBox="0 0 51.279 51.504">
+                            <g id="Group_249" data-name="Group 249" transform="translate(-1483.439 -246.212)">
+                                <path id="Path_631" data-name="Path 631"
+                                    d="M1498.054,254.316c0-.991,0-1.9,0-2.8a5.053,5.053,0,0,1,5.266-5.29q5.773-.024,11.547,0a5.048,5.048,0,0,1,5.246,5.255c.008.922,0,1.844,0,2.836h.629q4.33,0,8.66,0a5.07,5.07,0,0,1,5.307,5.255c.015,3.2,0,6.392.007,9.588a5.213,5.213,0,0,1-1.625,3.849,1.229,1.229,0,0,0-.327.785c-.018,6.21-.01,12.42-.017,18.63a5,5,0,0,1-3.351,4.969,6.007,6.007,0,0,1-1.918.308q-18.383.026-36.766.009a5.053,5.053,0,0,1-5.291-5.321q-.008-9.288,0-18.576a1.022,1.022,0,0,0-.354-.847,4.756,4.756,0,0,1-1.619-3.615c-.009-3.323-.031-6.646.005-9.969a5.042,5.042,0,0,1,5.163-5.064c2.923-.009,5.846,0,8.769,0Zm6.007,23.429c.038-.224.065-.382.093-.541a2.3,2.3,0,0,1,2.2-1.99q2.749-.067,5.5,0a2.291,2.291,0,0,1,2.16,1.964c.032.175.064.351.1.52a.47.47,0,0,0,.13.006c5.487-1.706,10.977-3.4,16.457-5.129a3.32,3.32,0,0,0,2.413-3.277c.037-3.3.049-6.611,0-9.916a3.4,3.4,0,0,0-3.58-3.451q-20.429-.009-40.858,0a3.418,3.418,0,0,0-3.6,3.485c-.043,3.287-.034,6.574,0,9.861a3.4,3.4,0,0,0,2.55,3.342q2.567.807,5.138,1.6Zm16.1,18.332v-18.5c-.2.054-.353.093-.507.141-1.61.5-3.213,1.026-4.834,1.487a.867.867,0,0,0-.773.977,4.967,4.967,0,1,1-9.93-.215c0-.387-.1-.573-.494-.686-1.392-.406-2.771-.855-4.157-1.282-.478-.148-.96-.283-1.45-.426v18.509Zm-20.4-41.8h18.7c0-1.216.1-2.4-.023-3.565a3.4,3.4,0,0,0-3.6-2.887c-3.539-.01-7.079,0-10.619,0-.471,0-.946-.01-1.414.033a3.237,3.237,0,0,0-3.011,2.635A27.325,27.325,0,0,0,1499.753,254.276Zm27.276,41.772a3.508,3.508,0,0,0,4.123-3.7q.012-8.827,0-17.654c0-.171-.021-.342-.034-.551-1.208.375-2.341.758-3.492,1.071a.694.694,0,0,0-.609.817q.027,9.7.012,19.4Zm-39.973-21.912c-.012.24-.027.4-.027.562q0,8.852,0,17.7a6.441,6.441,0,0,0,.036.707,3.436,3.436,0,0,0,4.085,2.9V278.054c0-.745.017-1.49-.014-2.233a.619.619,0,0,0-.282-.475C1489.621,274.929,1488.373,274.55,1487.056,274.136Zm5.74,1.8v20.144h3.562v-17.82c0-1.222,0-1.226-1.159-1.59C1494.411,276.425,1493.619,276.189,1492.8,275.939Zm32.59,20.138V275.93c-1.046.323-2.039.662-3.051.928-.448.118-.541.329-.54.756q.021,8.953.009,17.907v.555Zm-16.3-19.294c-.8,0-1.6-.011-2.4,0-.67.013-.961.31-.969.976-.01.8-.016,1.6,0,2.4a3.366,3.366,0,0,0,6.732,0c.016-.781.009-1.562,0-2.343-.006-.733-.289-1.02-1.027-1.029C1510.644,276.775,1509.863,276.782,1509.082,276.783Z"
+                                    fill="#6d7278" />
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Done button -->
+            <div class="row">
+                <div class="col-md-4 mx-auto">
+                    <button class="btn done-btn">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
