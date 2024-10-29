@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        /* Custom styles to match the design */
+        .profile-header {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .profile-subtitle {
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-decoration: underline;
+        }
+
+        .btn-edit-profile {
+            background-color: #00AEEF;
+            color: #fff;
+        }
+
+        .booked-card img {
+            border-radius: 0.5rem;
+        }
+
+        .rating {
+            font-size: 1.25rem;
+            color: #FFD700;
+        }
+
+        .review-summary {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .growth-badge {
+            background-color: #e0ffe5;
+            color: green;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        .review-card img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+
+        .progress-bar {
+            height: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container my-5">
+        <!-- Header Section -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="profile-header">Profile</h1>
+            <button class="btn btn-edit-profile">Edit Profile</button>
+        </div>
+
+        <div class="text-center mb-4">
+            <a href="#" class="profile-subtitle">About Mark William</a>
+        </div>
+
+        <!-- Booked Homes Section -->
+        <h2 class="mb-3">Booked Homes</h2>
+        <div class="row g-3">
+            <!-- Card 1 -->
+            <div class="col-md-4">
+                <div class="card booked-card">
+                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Island">
+                    <div class="card-body">
+                        <h5 class="card-title">Lorem Ipsum Island</h5>
+                        <p class="card-text">2.4 Hectares<br>$320 Night<br>May 24-29</p>
+                        <p class="rating">⭐ 4.95</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Repeat Cards as needed -->
+            <div class="col-md-4">
+                <div class="card booked-card">
+                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Island">
+                    <div class="card-body">
+                        <h5 class="card-title">Lorem Ipsum Island</h5>
+                        <p class="card-text">2.4 Hectares<br>$320 Night<br>May 24-29</p>
+                        <p class="rating">⭐ 4.95</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card booked-card">
+                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Island">
+                    <div class="card-body">
+                        <h5 class="card-title">Lorem Ipsum Island</h5>
+                        <p class="card-text">2.4 Hectares<br>$320 Night<br>May 24-29</p>
+                        <p class="rating">⭐ 4.95</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reviews Section -->
+        <h2 class="mt-5 mb-3">Reviews</h2>
+        <div class="row text-center">
+            <!-- Total Reviews -->
+            <div class="col-md-6">
+                <p class="review-summary">Total Reviews</p>
+                <h3>10.0K <span class="growth-badge">21%↑</span></h3>
+                <p>Growth in reviews on this year</p>
+            </div>
+            <!-- Average Rating -->
+            <div class="col-md-6">
+                <p class="review-summary">Average Rating</p>
+                <h3>4.0 <span class="rating">⭐️⭐️⭐️⭐️</span></h3>
+                <p>Growth in reviews on this year</p>
+            </div>
+            <!-- Rating Distribution -->
+            <div class="row text-center mb-4">
+                <div class="col-md-2 offset-md-1">5 ⭐️</div>
+                <div class="col-md-9">
+                    <div class="progress">
+                        <div class="progress-bar bg-success" style="width: 70%;">2.0k</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center mb-4">
+                <div class="col-md-2 offset-md-1">4 ⭐️</div>
+                <div class="col-md-9">
+                    <div class="progress">
+                        <div class="progress-bar bg-info" style="width: 50%;">1.0k</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center mb-4">
+                <div class="col-md-2 offset-md-1">3 ⭐️</div>
+                <div class="col-md-9">
+                    <div class="progress">
+                        <div class="progress-bar bg-warning" style="width: 25%;">500</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters Section -->
+        <div class="row g-3 my-4">
+            <div class="col-md-4">
+                <select class="form-select">
+                    <option>Hotels</option>
+                    <option>Resorts</option>
+                    <option>Hostels</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <select class="form-select">
+                    <option>Cabins</option>
+                    <option>Villas</option>
+                    <option>Apartments</option>
+                </select>
+            </div>
+            <div class="col-md-4 text-center">
+                <button class="btn btn-primary">Feb 2024 to Aug 2024</button>
+            </div>
+        </div>
+        <!-- User Review Card -->
+        <div class="card mt-5 p-3">
+            <div class="row g-0">
+                <div class="col-md-1 text-center">
+                    <img src="https://via.placeholder.com/50" alt="User">
+                </div>
+                <div class="col-md-11">
+                    <div class="card-body">
+                        <h5 class="card-title">Timo Und Jannis <small>Owner Host</small></h5>
+                        <p>Total Reviews: 14</p>
+                        <p class="rating">⭐️⭐️⭐️⭐️⭐️</p>
+                        <p class="card-text">I had the pleasure of hosting [Guest's Name], and I couldn't have asked for
+                            a better guest... <small class="text-muted">4.95 July 20 2024</small></p>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline-primary">Property</button>
+                            <button class="btn btn-outline-secondary">Send Message</button>
+                            <button class="btn btn-outline-light border">❤️</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

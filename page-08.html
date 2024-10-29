@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Navbar css start*/
+
+        /* Import Poppins font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+        * {
+            font-family: 'Poppins', sans-serif;
+            /* Apply Poppins font to all elements */
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            /* background-color: #f8f9fa; */
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Navbar Styles  */
+
+        nav {
+            border-bottom: 1px solid black;
+        }
+
+        .navbar-brand img {
+            height: auto;
+        }
+
+        /* Notification icon styling */
+        .bi-bell-fill {
+            color: #007bff;
+        }
+
+        /* Notification dot */
+        .position-absolute {
+            top: 0;
+            right: 0;
+            width: 8px;
+            height: 8px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        /* Profile picture and dropdown */
+        .dropdown-toggle img {
+            margin-right: 8px;
+        }
+
+        .dropdown-menu {
+            min-width: 200px;
+        }
+
+        @media (max-width: 320px) {
+            .dropdown .ms-2 {
+                font-size: 0.8rem;
+                /* Adjust the font size as needed */
+            }
+
+            .dropdown .fa-sharp {
+                font-size: 0.8rem;
+                /* Adjust the icon size as needed */
+            }
+        }
+
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 0;
+                /* Padding for mobile */
+            }
+
+            .navbar-brand img {
+                width: 150px;
+                /* Smaller logo for mobile */
+            }
+
+            .dropdown .text-end {
+                text-align: left;
+                /* Align text to the left on mobile */
+            }
+
+            .dropdown-menu {
+                position: absolute;
+                /* Dropdown appears above other content */
+            }
+        }
+
+        /* Main Content Section Stylling */
+        .profile-image {
+            border-radius: 8px;
+        }
+
+        .custom-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .custom-section {
+            margin-top: auto;
+            margin-left: 5%;
+        }
+
+        .custom-card h6 {
+            font-weight: bold;
+        }
+
+        .btn-custom {
+            background-color: #00aaff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .section-title {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        .tags {
+            display: inline-block;
+            padding: 5px 10px;
+            margin: 5px;
+            background-color: #f0f0f0;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+
+        .icon-title {
+            margin-bottom: auto;
+            font-size: 1em;
+            margin-top: 15px;
+        }
+
+        .icon-title img {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+        }
+
+        .icon-box {
+            border: 1px solid #ddd;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: min-content;
+        }
+
+        /* Toggle button styling */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 52px;
+            height: 28px;
+            margin-top: -11%;
+            margin-right: 17%
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: #00a1e4;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(24px);
+        }
+
+        .toggle-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        /* Positioning and padding for the text and toggle */
+        .toggle-container .toggle-text {
+            margin-right: 15px;
+        }
+
+        .icon-box:hover {
+            background-color: #f0f0f0;
+        }
+
+        .icon-box svg {
+            width: 40px;
+            height: 40px;
+            fill: #666;
+        }
+
+        /* footer css */
+        .footer {
+            margin: 0 auto;
+            /* Center the footer */
+            max-width: 100%;
+            /* Ensure it doesn’t exceed the width */
+            background-color: #F3F3F3;
+            /* Light background for footer */
+            padding: 40px 0;
+            /* Vertical padding */
+            border-top: 1px solid #e0e0e0;
+            /* Light top border */
+            overflow: hidden;
+            /* Prevent overflow */
+        }
+
+        .footer h5 {
+            font-weight: bold;
+            /* Bold titles */
+        }
+
+        .footer a {
+            color: #000;
+            /* Black color for links */
+            text-decoration: none;
+            /* Remove underline */
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+            /* Underline on hover */
+        }
+
+        .footer .social-icons a {
+            margin: 0 10px;
+            /* Space between social icons */
+            color: #000;
+            /* Black color for social icons */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container-fluid">
+            <div class="row w-100 align-items-center header">
+                <!-- LOGO Section (col-lg-3) -->
+                <div class="col-lg-3 col-6">
+                    <a class="navbar-brand" href="#">
+                        <img src="Assets/images/logo.png" alt="Bonstay" width="200" class="img-fluid" />
+                    </a>
+                </div>
+                <!-- Empty col-lg-6 for spacing -->
+                <div class="col-lg-6 d-none d-lg-block"></div>
+                <!-- Notifications and User Profile in col-lg-4 -->
+                <div class="col-lg-3 col-6 d-flex justify-content-end align-items-center">
+                    <!-- Switch To hosting link -->
+                    <a href="#" class="text-dark" style="margin-left: -40%; margin-right: auto;;">Switch to hosting</a>
+                    <!-- Notifications Icon -->
+                    <a href="#" class="nav-link position-relative me-3">
+                        <i class="bi bi-bell-fill" style="font-size: 1.5rem; color: #007bff"></i>
+                        <span
+                            class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+                            <span class="visually-hidden">New alerts</span>
+                        </span>
+                    </a>
+                    <!-- User Profile -->
+                    <div class="dropdown">
+                        <a class="d-flex align-items-center text-decoration-none" href="#" id="navbarDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="Assets/images/profile-pic-mark.png" alt="Profile Picture" class="rounded-circle"
+                                width="40" height="40" />
+                            <div class="ms-2">
+                                <span class="text-dark">Mark William</span><br />
+                                <small class="text-dark">Employee</small>
+                                <!-- Dropdown icon -->
+                                <i class="fa-sharp fa-solid fa-caret-down text-dark ms-1"></i>
+                                <br />
+                                <!-- Small text for Employee -->
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Notifications</a></li>
+                            <li><a class="dropdown-item" href="#">Messages</a></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item" href="#">Gift cards</a></li>
+                            <li class="px-3 text-muted">
+                                Bonstay credits can be applied to gift card
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li>
+                                <a class="dropdown-item" href="#">Switch for hosting</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- main content Section -->
+    <div class="container my-5">
+        <div class="row">
+            <!-- Left Section -->
+            <div class="col-md-3">
+                <!-- Profile Image -->
+                <img src="Assets/Images/mark-pic.png" alt="Profile Image" class="img-fluid profile-image mb-4">
+
+                <!-- Profile Details -->
+                <h2>Mark William</h2>
+                <p class="text-muted">Guest</p>
+
+                <!-- Confirmed Information Card -->
+                <div class="custom-card">
+                    <h6>Mark William's confirmed information</h6>
+                    <p><i class="bi bi-check-circle-fill text-success"></i> Email address</p>
+                    <hr>
+                    <h6>Verify your identity</h6>
+                    <p>Before you book or host on Bonstay, you’ll need to complete this step.</p>
+                    <button class="btn btn-outline-secondary">Get Verified</button>
+                </div>
+            </div>
+
+            <!-- Right Section -->
+            <div class="col-md-7 custom-section mt-4">
+                <div class="container mb-4">
+                    <div class="row">
+                        <div class="col-12 text-center d-flex justify-content-between align-items-center">
+                            <h2>About Mark William</h2>
+                            <button class="btn btn-custom">Edit Profile</button>
+                        </div>
+                        <div class="col-12 mt-4">
+                            <div class="section-title">Desired Destination</div>
+                            <p><strong>Kyoto, Japan:</strong> Nestled in tradition and modernity, Kyoto is a tapestry of
+                                ancient temples, serene gardens, and vibrant festivals. Walking through the historic
+                                Gion district or experiencing the tranquility of the Arashiyama Bamboo Grove is like
+                                stepping back in time.</p>
+                        </div>
+                    </div>
+                    <div class="cutom-tags">
+                        <!-- Travel Frequency -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="icon-title">
+                                    <i class="bi bi-luggage"></i>
+                                    <span>Travel Frequency</span>
+                                </div>
+                                <div class="tags">Occasionally</div>
+                                <div class="tags">Bi-Monthly</div>
+                            </div>
+                        </div>
+
+                        <!-- Travel Purpose -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="icon-title">
+                                    <img src="https://img.icons8.com/ios/50/000000/worldwide-location.png"
+                                        alt="Travel Purpose Icon">
+                                    <span>I travel Mostly For</span>
+                                </div>
+                                <div class="tags">Business</div>
+                            </div>
+                        </div>
+
+                        <!-- Airlines -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="icon-title">
+                                    <img src="https://img.icons8.com/ios/50/000000/airplane-take-off.png"
+                                        alt="Airlines Icon">
+                                    <span>Airlines</span>
+                                </div>
+                                <div class="tags">Emirates Airlines</div>
+                                <div class="tags">Jutt Blue</div>
+                                <div class="tags">Alaska Airlines</div>
+                                <div class="tags">Qatar Airways</div>
+                            </div>
+                        </div>
+
+                        <!-- Entertainment -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="icon-title">
+                                    <img src="https://img.icons8.com/ios/50/000000/clapperboard.png"
+                                        alt="Entertainment Icon">
+                                    <span>Entertainment</span>
+                                </div>
+                                <div class="tags">Movies</div>
+                                <div class="tags">Music concerts and festivals</div>
+                                <div class="tags">Comedy clubs</div>
+                                <div class="tags">Sporting events</div>
+                                <div class="tags">Video games</div>
+                            </div>
+                        </div>
+
+                        <!-- Restaurants -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="icon-title">
+                                    <img src="https://img.icons8.com/ios/50/000000/restaurant.png"
+                                        alt="Restaurants Icon">
+                                    <span>Restaurants</span>
+                                </div>
+                                <div class="tags">KFC</div>
+                                <div class="tags">MacDonalds</div>
+                                <div class="tags">Subway</div>
+                                <div class="tags">Star Bucks</div>
+                            </div>
+                        </div>
+
+                        <!-- Shoppings -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="icon-title">
+                                    <img src="https://img.icons8.com/ios/50/000000/shopping-bag.png"
+                                        alt="Shoppings Icon">
+                                    <span>Shoppings</span>
+                                </div>
+                                <div class="tags">The Galleria</div>
+                                <div class="tags">The Grove, California</div>
+                                <div class="tags">Aventura Mall, Florida</div>
+                                <div class="tags">South Coast Plaza, California</div>
+                                <div class="tags">Tysons Corner Center, Virginia</div>
+                                <div class="tags">Mall of America, Minnesota</div>
+                            </div>
+                        </div>
+                        <!--Activity -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="icon-title">
+                                    <img src="https://img.icons8.com/ios/50/000000/shopping-bag.png"
+                                        alt="Shoppings Icon">
+                                    <span>Activities</span>
+                                </div>
+                                <div class="tags">Hiking</div>
+                                <div class="tags">Physical Exercise</div>
+                                <div class="tags">Mental Clarity</div>
+                                <div class="tags">Scenic Beauty</div>
+                                <div class="tags">Adventure and Exploration</div>
+                            </div>
+                        </div>
+                        <!-- Transportation -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="icon-title">
+                                    <img src="https://img.icons8.com/ios/50/000000/shopping-bag.png"
+                                        alt="Shoppings Icon">
+                                    <span>Transportation</span>
+                                </div>
+                                <div class="tags">Uber</div>
+                                <div class="tags">Lyft</div>
+                                <div class="tags">Taxi</div>
+                                <div class="tags">Wingz</div>
+                                <div class="tags">Zemcar</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Bonstay Credit Club Section -->
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <h4><b>Bonstay Credit Club</b></h4>
+                            <div class="row mt-2">
+                                <div class="col-md-6 d-flex align-items-center">
+                                    <img src="https://img.icons8.com/ios/50/000000/wallet.png" alt="Credit Icon"
+                                        style="width: 24px; height: 24px; margin-right: 8px;">
+                                    <span class="credit-section-title">Current Bonstay Credits</span>
+                                </div>
+                                <div class="col-md-6 d-flex align-items-center">
+                                    <img src="https://img.icons8.com/ios/50/000000/loyalty-card.png"
+                                        alt="Credit Club Icon" style="width: 24px; height: 24px; margin-right: 8px;">
+                                    <span class="credit-section-title">Bonstay Credit Club</span>
+                                </div>
+                            </div>
+                            <p class="mt-3"><b>Provide additional information that would help Bonstay and
+                                    hosts optimize your travel experiences.</b></p>
+                            <div class="tags">Architecture</div>
+                            <div class="tags">Foods</div>
+                            <div class="tags">Reading</div>
+                            <div class="tags">Theater</div>
+                            <div class="tags">Water Sports</div>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <h3><b>Where you've been</b></h3>
+                    </div>
+                    <!-- Toggle button container -->
+                    <div class="toggle-container">
+
+                        <label class="toggle-switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <!-- Icon boxes -->
+                    <div class="row  mb-4">
+                        <div class="col-md-2">
+                            <div class="icon-box">
+                                <!-- World icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="51.512" height="51.506"
+                                    viewBox="0 0 51.512 51.506">
+                                    <g id="Group_246" data-name="Group 246" transform="translate(-1958.568 -511.32)">
+                                        <path id="Path_601" data-name="Path 601"
+                                            d="M1984.34,511.32a25.753,25.753,0,1,1-25.771,25.723A25.773,25.773,0,0,1,1984.34,511.32Zm-18.553,11.091c-2.567,2.427-5.339,9.845-5.091,13.6h11.271a52.131,52.131,0,0,1,1.3-10.621A31.292,31.292,0,0,1,1965.786,522.411Zm37.126-.029a31.917,31.917,0,0,1-7.532,3.017,52.093,52.093,0,0,1,1.3,10.6H2008A23.794,23.794,0,0,0,2002.912,522.381Zm-29.642,26.375a52.007,52.007,0,0,1-1.308-10.626H1960.7c-.272,3.694,2.5,11.116,5.086,13.607A31.219,31.219,0,0,1,1973.27,548.756Zm22.108,0a31.983,31.983,0,0,1,7.543,3.007,23.836,23.836,0,0,0,5.073-13.623h-11.312A51.9,51.9,0,0,1,1995.378,548.752Zm-12.116-12.735v-9.137l-8.008-.9a47.687,47.687,0,0,0-1.223,10.036Zm-9.233,2.113a47.366,47.366,0,0,0,1.227,10.03l8-.891V538.13Zm20.589-2.111a47.257,47.257,0,0,0-1.23-10.032l-8.008.89v9.142Zm-9.246,11.246,8.021.9a47.8,47.8,0,0,0,1.222-10.023h-9.242Zm0,13.368c.308-.111.587-.19.846-.31a7.985,7.985,0,0,0,2.8-2.293,20.052,20.052,0,0,0,3.239-6.039c.2-.554.377-1.117.578-1.714a41.884,41.884,0,0,0-7.465-.827Zm.021-47.1v11.27l7.544-.836c-.543-1.4-.978-2.635-1.5-3.836a14.714,14.714,0,0,0-3.5-5.152A5.819,5.819,0,0,0,1985.4,513.538Zm-2.134,11.142V513.555a1.527,1.527,0,0,0-.234.036c-.146.048-.291.1-.433.161a7.877,7.877,0,0,0-3.017,2.421,20.138,20.138,0,0,0-3.184,5.953c-.2.558-.38,1.127-.568,1.69A35.3,35.3,0,0,0,1983.261,524.68Zm-7.385,25.472-.1.222c.484,1.241.922,2.5,1.462,3.719a14.591,14.591,0,0,0,3.492,5.093,5.728,5.728,0,0,0,2.523,1.42V549.339Zm25.658,3.209a28.179,28.179,0,0,0-6.686-2.611,24.221,24.221,0,0,1-4.854,9.327A23.939,23.939,0,0,0,2001.535,553.361ZM1973.8,523.4a24.183,24.183,0,0,1,4.848-9.329,23.838,23.838,0,0,0-11.528,6.714A28.487,28.487,0,0,0,1973.8,523.4Zm27.732-2.615a23.874,23.874,0,0,0-11.545-6.719,24.136,24.136,0,0,1,4.866,9.336A28.7,28.7,0,0,0,2001.532,520.785Zm-22.883,39.288a24.23,24.23,0,0,1-4.855-9.329,27.936,27.936,0,0,0-6.673,2.624A23.9,23.9,0,0,0,1978.649,560.073Z"
+                                            transform="translate(0)" fill="#6d7278" />
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="icon-box">
+                                <!-- Airplane icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="54.67" height="54.631"
+                                    viewBox="0 0 54.67 54.631">
+                                    <g id="Group_248" data-name="Group 248" transform="translate(-1151.787 -233.556)">
+                                        <path id="Path_624" data-name="Path 624"
+                                            d="M1151.787,256.382c.179-.219.341-.454.54-.653q3.138-3.15,6.287-6.29a3.224,3.224,0,0,1,.4-.352.725.725,0,0,1,1.014.079.751.751,0,0,1,.082,1.018,2.546,2.546,0,0,1-.352.4q-3.144,3.144-6.291,6.286c-.687.686-1.005.694-1.676.048Z"
+                                            transform="translate(0 -10.055)" fill="#6d7278" />
+                                        <path id="Path_625" data-name="Path 625"
+                                            d="M1194.252,237.6c.954.445.954.445,1.638-.238.34-.34.673-.685,1.021-1.017a2.518,2.518,0,0,1,3.969,3.065c-.025.046-.041.1-.078.187.6.181,1.192.362,1.785.538,1.464.435,2.934.851,4.389,1.314a.8.8,0,0,0,.924-.246c1.578-1.513,3.129-3.06,4.792-4.475a13.665,13.665,0,0,1,5.153-2.928,5.473,5.473,0,0,1,2.1-.215,3.182,3.182,0,0,1,2.761,3.889,11.785,11.785,0,0,1-2.032,4.59,37.274,37.274,0,0,1-5.587,6.287.807.807,0,0,0-.26.963c.6,1.913,1.158,3.84,1.731,5.762.035.117.081.232.136.386a2.737,2.737,0,0,1,1.977-.439,2.5,2.5,0,0,1,1.454,4.1c-.353.421-.764.795-1.152,1.185-.706.71-.708.708-.341,1.634a8.778,8.778,0,0,1,1.5-.255,2.3,2.3,0,0,1,2.188,1.435,2.328,2.328,0,0,1-.277,2.56,11.29,11.29,0,0,1-1.328,1.383.875.875,0,0,0-.288,1.057c.718,2.3,1.382,4.626,2.1,6.93a1.307,1.307,0,0,1-.4,1.563c-.51.441-.962.948-1.441,1.425-.742.739-1.148.712-1.758-.122l-9.611-13.124c-.336-.459-.676-.915-1.006-1.378-.391-.549-.361-1,.076-1.3.4-.275.847-.157,1.226.359q3.3,4.492,6.589,8.991l3.689,5.036c.069-.042.113-.065.154-.093a1.606,1.606,0,0,0,.6-2.108c-2.4-7.878-4.733-15.778-7.087-23.67-.054-.182-.127-.359-.2-.57l-7.678,7.026c.525.72,1.042,1.419,1.548,2.125.374.522.351.969-.048,1.271s-.865.186-1.236-.306c-.492-.652-.969-1.315-1.485-2.018l-1.254,1.08q-6.143,5.295-12.293,10.582a.569.569,0,0,0-.176.769c.671,1.7,1.3,3.417,1.988,5.112a1.167,1.167,0,0,1-.324,1.47c-.694.637-1.337,1.329-2.009,1.99a.88.88,0,0,1-1.466,0q-5.91-5.9-11.814-11.806c-.55-.55-.543-.942.012-1.5.689-.7,1.394-1.374,2.071-2.08a1.03,1.03,0,0,1,1.25-.265c1.752.687,3.514,1.351,5.268,2.035a.505.505,0,0,0,.686-.133q5.722-6.655,11.465-13.291c.079-.092.146-.194.235-.312l-6.557-4.8-13.174-9.637c-.868-.635-.9-1.025-.134-1.79.5-.5,1.027-.987,1.5-1.515a1.189,1.189,0,0,1,1.389-.333c2.378.728,4.767,1.418,7.144,2.149a.688.688,0,0,0,.831-.221c.331-.371.7-.712,1.052-1.061a2.573,2.573,0,0,1,3.342-.456,2.525,2.525,0,0,1,.8,3.307A.533.533,0,0,0,1194.252,237.6Zm-9.4,35.185c.13-.1.241-.189.349-.279,2.123-1.785,4.253-3.563,6.367-5.359,8.161-6.931,16.259-13.933,23.912-21.43a24.449,24.449,0,0,0,4.647-5.875,10.058,10.058,0,0,0,.972-2.627,1.652,1.652,0,0,0-2.021-2.058,5.517,5.517,0,0,0-1.135.282,13.361,13.361,0,0,0-4.352,2.64c-1.927,1.735-3.817,3.52-5.609,5.392-7.6,7.945-14.725,16.313-21.82,24.705-.9,1.07-1.8,2.149-2.682,3.208Zm-5.068-36.371,19.393,14.185,7.035-7.68c-.229-.079-.409-.148-.592-.2-7.879-2.347-15.764-4.674-23.63-7.065C1180.985,235.348,1180.294,235.4,1179.78,236.416Zm6.281,37.471,3.675,3.673c.359-.367.775-.754,1.14-1.185a.707.707,0,0,0,.121-.582c-.31-.887-.666-1.757-1.005-2.634-.24-.621-.479-1.243-.743-1.928ZM1185.026,267c-1.621-.622-3.157-1.215-4.7-1.793a.439.439,0,0,0-.366.08c-.467.4-.916.826-1.293,1.17l3.711,3.712Zm11.969-28.537c.7.209,1.251.38,1.807.538.092.026.256.038.288-.009a2.488,2.488,0,0,0,.543-.97c.024-.244-.272-.593-.516-.77a.8.8,0,0,0-1.016.181C1197.757,237.739,1197.43,238.06,1196.995,238.467Zm20.793,20.727c.186-.175.306-.277.414-.391a7.471,7.471,0,0,0,.779-.862.8.8,0,0,0-.164-1.1.823.823,0,0,0-1.074-.1c-.355.226-.639.469-.421.98C1217.514,258.168,1217.621,258.652,1217.788,259.194Zm-27.3-22.664,1.549.467a.535.535,0,0,0,.2.051.853.853,0,0,0,.418-.112.911.911,0,0,0,.1-1.288.863.863,0,0,0-1.24-.1C1191.178,235.823,1190.879,236.15,1190.483,236.53Zm29.261,29.25a13.1,13.1,0,0,0,1.056-1.154.822.822,0,0,0-.429-1.261,1.7,1.7,0,0,0-.935.168.524.524,0,0,0-.206.462C1219.359,264.557,1219.545,265.107,1219.745,265.78Z"
+                                            transform="translate(-16.301)" fill="#6d7278" />
+                                        <path id="Path_626" data-name="Path 626"
+                                            d="M1272.175,375.814c-.262-.182-.559-.282-.637-.471a1.438,1.438,0,0,1,.027-.8c.03-.137.188-.251.3-.364q3.2-3.206,6.412-6.407c.125-.125.262-.315.406-.327a1.642,1.642,0,0,1,.922.1.649.649,0,0,1,.158.946,2.238,2.238,0,0,1-.339.407q-3.2,3.207-6.417,6.4A4.53,4.53,0,0,1,1272.175,375.814Z"
+                                            transform="translate(-78.352 -87.626)" fill="#6d7278" />
+                                        <path id="Path_627" data-name="Path 627"
+                                            d="M1175.227,259.633a3.843,3.843,0,0,1-.422.7q-2.041,2.07-4.109,4.113a.811.811,0,1,1-1.113-1.152q2.03-2.043,4.073-4.073c.286-.285.63-.473,1-.246A2.93,2.93,0,0,1,1175.227,259.633Z"
+                                            transform="translate(-11.425 -16.568)" fill="#6d7278" />
+                                        <path id="Path_628" data-name="Path 628"
+                                            d="M1274.775,358.035a3.612,3.612,0,0,1-.412.7q-2.04,2.071-4.108,4.113a.811.811,0,1,1-1.135-1.131c1.365-1.375,2.724-2.757,4.125-4.095a1.216,1.216,0,0,1,.947-.221C1274.411,357.444,1274.571,357.8,1274.775,358.035Z"
+                                            transform="translate(-76.587 -81.051)" fill="#6d7278" />
+                                        <path id="Path_629" data-name="Path 629"
+                                            d="M1186.319,270.965c-.738-.061-1.068-.684-.765-1.194a2.635,2.635,0,0,1,.413-.483c.851-.857,1.7-1.713,2.563-2.56.445-.437.923-.474,1.266-.125s.321.8-.131,1.263c-.91.923-1.824,1.843-2.756,2.745A2.544,2.544,0,0,1,1186.319,270.965Z"
+                                            transform="translate(-22.029 -21.476)" fill="#6d7278" />
+                                        <path id="Path_630" data-name="Path 630"
+                                            d="M1265.928,349.379c-.231-.2-.572-.349-.627-.571a1.157,1.157,0,0,1,.178-.909c.539-.634,1.16-1.2,1.75-1.788.377-.377.744-.763,1.134-1.126a.8.8,0,1,1,1.143,1.119q-1.432,1.468-2.9,2.9A3.324,3.324,0,0,1,1265.928,349.379Z"
+                                            transform="translate(-74.283 -72.737)" fill="#6d7278" />
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+    <div class="footer">
+        <div class="row justify-content-between align-items-center text-center"> <!-- Center text within the row -->
+            <div class="col-md-6">
+                <p class="mb-0 d-inline fs-6">&copy; 2024 Bonstay</p>
+                <div class="footer-links d-inline">
+                    <a href="#" class="text-decoration-none mx-2">Terms</a>
+                    <span class="mx-2">|</span>
+                    <a href="#" class="text-decoration-none mx-2">Sitemap</a>
+                    <span class="mx-2">|</span>
+                    <a href="#" class="text-decoration-none mx-2">Privacy</a>
+                    <span class="mx-2">|</span>
+                    <a href="#" class="text-decoration-none mx-2">Your Privacy Choices</a>
+                </div>
+            </div>
+            <div class="col-md-6 social-icons">
+                <a href="#"><i class="fa-solid fa-globe"> English</i></a>
+                <a href="#" class="mx-5"><i class="fa-solid fa-dollar-sign"> USD</i> </a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.3/font/bootstrap-icons.min.css">
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
