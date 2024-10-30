@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar and Footer Example</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Navbar css start*/
+
+        /* Import Poppins font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+        * {
+            font-family: 'Poppins', sans-serif;
+            /* Apply Poppins font to all elements */
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            /* background-color: #f8f9fa; */
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Navbar Styles  */
+
+        nav {
+            border-bottom: 1px solid black;
+        }
+
+        .navbar-brand img {
+            height: auto;
+        }
+
+        /* Notification icon styling */
+        .bi-bell-fill {
+            color: #007bff;
+        }
+
+        /* Notification dot */
+        .position-absolute {
+            top: 0;
+            right: 0;
+            width: 8px;
+            height: 8px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        /* Profile picture and dropdown */
+        .dropdown-toggle img {
+            margin-right: 8px;
+        }
+
+        .dropdown-menu {
+            min-width: 200px;
+        }
+
+        @media (max-width: 320px) {
+            .dropdown .ms-2 {
+                font-size: 0.8rem;
+                /* Adjust the font size as needed */
+            }
+
+            .dropdown .fa-sharp {
+                font-size: 0.8rem;
+                /* Adjust the icon size as needed */
+            }
+        }
+
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 0;
+                /* Padding for mobile */
+            }
+
+            .navbar-brand img {
+                width: 150px;
+                /* Smaller logo for mobile */
+            }
+
+            .dropdown .text-end {
+                text-align: left;
+                /* Align text to the left on mobile */
+            }
+
+            .dropdown-menu {
+                position: absolute;
+                /* Dropdown appears above other content */
+            }
+        }
+
+        /* Main Content Section Stylling */
+        body {
+            background-color: #f7f7f7;
+        }
+
+        .payment-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .card-logo {
+            width: 114px;
+            height: auto;
+        }
+
+        .edit-link,
+        .coupon-link {
+            color: #222222;
+            font-weight: bold;
+        }
+
+        .edit-link:hover,
+        .coupon-link:hover {
+            text-decoration: underline;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-top: 20px;
+            color: #000;
+        }
+
+        .ground-rules,
+        .agreement-text {
+            font-size: 0.9rem;
+            color: #000000;
+        }
+
+        .text-primary {
+            color: #0091FF;
+            text-decoration: none;
+        }
+
+        .btn-confirm {
+            background-color: #0091FF;
+            color: white;
+            font-weight: bold;
+        }
+
+        .btn-confirm:hover {
+            background-color: #0091FF;
+        }
+
+        /* modal css */
+        .modal-header {
+            border-bottom: none;
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+            letter-spacing: 0px;
+            color: #222222;
+            opacity: 1;
+        }
+
+        .modal-body p {
+            text-align: center;
+            font: normal normal normal 22px/33px Poppins;
+            letter-spacing: 0px;
+        }
+
+        .modal-body i {
+            color: #00AAE5;
+        }
+
+        .profile-img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+        }
+
+        button.btn.btn-booked {
+            color: white;
+            background: #0091FF 0% 0% no-repeat padding-box;
+            border-radius: 5px;
+            width: 90%;
+        }
+
+        /* footer css */
+        .footer {
+            margin: 0 auto;
+            /* Center the footer */
+            max-width: 100%;
+            /* Ensure it doesn’t exceed the width */
+            background-color: #F3F3F3;
+            /* Light background for footer */
+            padding: 40px 0;
+            /* Vertical padding */
+            border-top: 1px solid #e0e0e0;
+            /* Light top border */
+            overflow: hidden;
+            /* Prevent overflow */
+        }
+
+        .footer h5 {
+            font-weight: bold;
+            /* Bold titles */
+        }
+
+        .footer a {
+            color: #000;
+            /* Black color for links */
+            text-decoration: none;
+            /* Remove underline */
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+            /* Underline on hover */
+        }
+
+        .footer .social-icons a {
+            margin: 0 10px;
+            /* Space between social icons */
+            color: #000;
+            /* Black color for social icons */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container-fluid">
+            <div class="row w-100 align-items-center header">
+                <!-- LOGO Section (col-lg-3) -->
+                <div class="col-lg-3 col-6">
+                    <a class="navbar-brand" href="#">
+                        <img src="Assets/images/logo.png" alt="Bonstay" width="200" class="img-fluid" />
+                    </a>
+                </div>
+                <!-- Empty col-lg-6 for spacing -->
+                <div class="col-lg-6 d-none d-lg-block"></div>
+                <!-- Notifications and User Profile in col-lg-4 -->
+                <div class="col-lg-3 col-6 d-flex justify-content-end align-items-center">
+                    <!-- Switch To hosting link -->
+                    <a href="#" class="text-dark" style="margin-left: -40%; margin-right: auto;;">Switch to hosting</a>
+                    <!-- Notifications Icon -->
+                    <a href="#" class="nav-link position-relative me-3">
+                        <i class="bi bi-bell-fill" style="font-size: 1.5rem; color: #007bff"></i>
+                        <span
+                            class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+                            <span class="visually-hidden">New alerts</span>
+                        </span>
+                    </a>
+                    <!-- User Profile -->
+                    <div class="dropdown">
+                        <a class="d-flex align-items-center text-decoration-none" href="#" id="navbarDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="Assets/images/profile-pic-mark.png" alt="Profile Picture" class="rounded-circle"
+                                width="40" height="40" />
+                            <div class="ms-2">
+                                <span class="text-dark">Mark William</span><br />
+                                <small class="text-dark">Employee</small>
+                                <!-- Dropdown icon -->
+                                <i class="fa-sharp fa-solid fa-caret-down text-dark ms-1"></i>
+                                <br />
+                                <!-- Small text for Employee -->
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Notifications</a></li>
+                            <li><a class="dropdown-item" href="#">Messages</a></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item" href="#">Gift cards</a></li>
+                            <li class="px-3 text-muted">
+                                Bonstay credits can be applied to gift card
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li>
+                                <a class="dropdown-item" href="#">Switch for hosting</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Main Content Section -->
+    <div class="payment-container">
+        <a href="#" class="text-black mb-3 d-inline-block text-decoration-none"><img src="Assets/Images/back.png"
+                style="width: 35px;"> Confirm & Pay</a>
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <p class="mb-1">Pay With</p>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Mastercard Logo"
+                    class="card-logo">
+            </div>
+            <a href="#" class="edit-link">Edit</a>
+        </div>
+
+        <a href="#" class="coupon-link">Enter a coupon</a>
+
+        <h6 class="section-title">Cancellation policy</h6>
+        <p class="mb-3">Free cancellation before Feb 12. After that, the reservation is non-refundable. <a href="#"
+                class="text-muted">Learn more</a></p>
+
+        <h6 class="section-title">Ground rules</h6>
+        <p class="ground-rules">
+            We ask every guest to remember a few simple things about what makes a great guest.
+        <ul class="list-unstyled">
+            <li>&bull; Follow the house rules</li>
+            <li>&bull; Treat your Host's home like your own</li>
+        </ul>
+        </p>
+
+        <p class="agreement-text">
+            By selecting the button below, I agree to the Host's House Rules, <a href="#" class="text-primary">Ground
+                rules for guests</a>,
+            <a href="#" class="text-primary">Bonstay's Rebooking and Refund Policy</a>, and that Airbnb can
+            <a href="#" class="text-primary">charge my payment method</a> if I'm responsible for damage.
+        </p>
+
+        <p class="agreement-text">
+            I also agree to the <a href="#" class="text-primary">updated Terms of Service</a>, <a href="#"
+                class="text-primary">Payments Terms of Service</a>,
+            and I acknowledge the <a href="#" class="text-primary">Privacy Policy</a>.
+        </p>
+
+        <h6 class="section-title">Bonstay credits</h6>
+        <p class="agreement-text">
+            BONSTAY CREDITS are a form of currency or points system utilized within the <a href="#"
+                class="text-primary">BonStay</a> platform. These credits offer users a variety of benefits and can be
+            applied in several ways to enhance their <br>Experience within the <a href="#"
+                class="text-primary">BonStay</a> ecosystem <br> <b>Learn More.</b>
+        </p>
+        <button type="button" data-bs-toggle="modal" data-bs-target="#feedbackModal"
+            class="btn btn-confirm w-100 mt-3">Confirm and Pay</button>
+    </div>
+    <!-- Feedback Modal -->
+    <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <img src="Assets/Images/tick-logo.svg" alt="">
+                    </div>
+                    <h4 class=" text-decoration-underline">Success</h4>
+                    <p class="text-muted mt-5 text-decoration-underline">You have completed your payment</p>
+                    <button class="btn btn-booked mt-5 mb-5" type="button">GO Back Home</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+    <div class="footer">
+        <div class="row justify-content-between align-items-center text-center"> <!-- Center text within the row -->
+            <div class="col-md-6">
+                <p class="mb-0 d-inline fs-6">&copy; 2024 Bonstay</p>
+                <div class="footer-links d-inline">
+                    <a href="#" class="text-decoration-none mx-2">Terms</a>
+                    <span class="mx-2">|</span>
+                    <a href="#" class="text-decoration-none mx-2">Sitemap</a>
+                    <span class="mx-2">|</span>
+                    <a href="#" class="text-decoration-none mx-2">Privacy</a>
+                    <span class="mx-2">|</span>
+                    <a href="#" class="text-decoration-none mx-2">Your Privacy Choices</a>
+                </div>
+            </div>
+            <div class="col-md-6 social-icons">
+                <a href="#"><i class="fa-solid fa-globe"> English</i></a>
+                <a href="#" class="mx-5"><i class="fa-solid fa-dollar-sign"> USD</i> </a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.3/font/bootstrap-icons.min.css">
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
