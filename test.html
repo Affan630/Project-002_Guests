@@ -1,199 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Page</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <title>Booking Summary</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Custom styles to match the design */
-        .profile-header {
+        /* Additional custom styles */
+        .payment-icons {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .payment-icons h5 {
+            margin-right: auto;
+            margin-bottom: 0;
+        }
+        
+        .add-phone-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+        
+        .add-phone-btn:hover {
+            background-color: #0056b3;
+        }
+        
+        .payment-heading {
             font-weight: bold;
-            font-size: 1.5rem;
-        }
-
-        .profile-subtitle {
-            font-weight: bold;
-            font-size: 1.2rem;
-            text-decoration: underline;
-        }
-
-        .btn-edit-profile {
-            background-color: #00AEEF;
-            color: #fff;
-        }
-
-        .booked-card img {
-            border-radius: 0.5rem;
-        }
-
-        .rating {
             font-size: 1.25rem;
-            color: #FFD700;
-        }
-
-        .review-summary {
-            font-size: 1.25rem;
-            font-weight: bold;
-        }
-
-        .growth-badge {
-            background-color: #e0ffe5;
-            color: green;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.5rem;
-            font-size: 0.8rem;
-        }
-
-        .review-card img {
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-        }
-
-        .progress-bar {
-            height: 5px;
+            margin-bottom: 1rem;
         }
     </style>
 </head>
-
 <body>
-    <div class="container my-5">
-        <!-- Header Section -->
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="profile-header">Profile</h1>
-            <button class="btn btn-edit-profile">Edit Profile</button>
-        </div>
-
-        <div class="text-center mb-4">
-            <a href="#" class="profile-subtitle">About Mark William</a>
-        </div>
-
-        <!-- Booked Homes Section -->
-        <h2 class="mb-3">Booked Homes</h2>
-        <div class="row g-3">
-            <!-- Card 1 -->
-            <div class="col-md-4">
-                <div class="card booked-card">
-                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Island">
-                    <div class="card-body">
-                        <h5 class="card-title">Lorem Ipsum Island</h5>
-                        <p class="card-text">2.4 Hectares<br>$320 Night<br>May 24-29</p>
-                        <p class="rating">⭐ 4.95</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Repeat Cards as needed -->
-            <div class="col-md-4">
-                <div class="card booked-card">
-                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Island">
-                    <div class="card-body">
-                        <h5 class="card-title">Lorem Ipsum Island</h5>
-                        <p class="card-text">2.4 Hectares<br>$320 Night<br>May 24-29</p>
-                        <p class="rating">⭐ 4.95</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card booked-card">
-                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Island">
-                    <div class="card-body">
-                        <h5 class="card-title">Lorem Ipsum Island</h5>
-                        <p class="card-text">2.4 Hectares<br>$320 Night<br>May 24-29</p>
-                        <p class="rating">⭐ 4.95</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Reviews Section -->
-        <h2 class="mt-5 mb-3">Reviews</h2>
-        <div class="row text-center">
-            <!-- Total Reviews -->
+    <!-- Main Content Section -->
+    <div class="container mt-5">
+        <div class="row justify-content-center">
             <div class="col-md-6">
-                <p class="review-summary">Total Reviews</p>
-                <h3>10.0K <span class="growth-badge">21%↑</span></h3>
-                <p>Growth in reviews on this year</p>
-            </div>
-            <!-- Average Rating -->
-            <div class="col-md-6">
-                <p class="review-summary">Average Rating</p>
-                <h3>4.0 <span class="rating">⭐️⭐️⭐️⭐️</span></h3>
-                <p>Growth in reviews on this year</p>
-            </div>
-            <!-- Rating Distribution -->
-            <div class="row text-center mb-4">
-                <div class="col-md-2 offset-md-1">5 ⭐️</div>
-                <div class="col-md-9">
-                    <div class="progress">
-                        <div class="progress-bar bg-success" style="width: 70%;">2.0k</div>
-                    </div>
+                <!-- Payment Icons and Heading -->
+                <div class="payment-icons">
+                    <h5>Pay with</h5>
+                    <img src="Assets/Images/cards-icons.svg" alt="Payment Methods" style="width: 200px;">
                 </div>
-            </div>
-            <div class="row text-center mb-4">
-                <div class="col-md-2 offset-md-1">4 ⭐️</div>
-                <div class="col-md-9">
-                    <div class="progress">
-                        <div class="progress-bar bg-info" style="width: 50%;">1.0k</div>
-                    </div>
-                </div>
-            </div>
-            <div class="row text-center mb-4">
-                <div class="col-md-2 offset-md-1">3 ⭐️</div>
-                <div class="col-md-9">
-                    <div class="progress">
-                        <div class="progress-bar bg-warning" style="width: 25%;">500</div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Filters Section -->
-        <div class="row g-3 my-4">
-            <div class="col-md-4">
-                <select class="form-select">
-                    <option>Hotels</option>
-                    <option>Resorts</option>
-                    <option>Hostels</option>
-                </select>
-            </div>
-            <div class="col-md-4">
-                <select class="form-select">
-                    <option>Cabins</option>
-                    <option>Villas</option>
-                    <option>Apartments</option>
-                </select>
-            </div>
-            <div class="col-md-4 text-center">
-                <button class="btn btn-primary">Feb 2024 to Aug 2024</button>
-            </div>
-        </div>
-        <!-- User Review Card -->
-        <div class="card mt-5 p-3">
-            <div class="row g-0">
-                <div class="col-md-1 text-center">
-                    <img src="https://via.placeholder.com/50" alt="User">
-                </div>
-                <div class="col-md-11">
-                    <div class="card-body">
-                        <h5 class="card-title">Timo Und Jannis <small>Owner Host</small></h5>
-                        <p>Total Reviews: 14</p>
-                        <p class="rating">⭐️⭐️⭐️⭐️⭐️</p>
-                        <p class="card-text">I had the pleasure of hosting [Guest's Name], and I couldn't have asked for
-                            a better guest... <small class="text-muted">4.95 July 20 2024</small></p>
-                        <div class="d-flex gap-2">
-                            <button class="btn btn-outline-primary">Property</button>
-                            <button class="btn btn-outline-secondary">Send Message</button>
-                            <button class="btn btn-outline-light border">❤️</button>
+                <div class="border-box">
+                    <!-- Payment Form -->
+                    <h5 class="payment-heading">Make Payment</h5>
+                    <div class="form-group mb-3">
+                        <label for="card-type">Credit or Debit Card</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><img src="Assets/Images/cc-icon.svg" alt=""></span>
+                            <input type="text" class="form-control" id="card-type" placeholder="Credit or Debit Card">
                         </div>
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                        <label for="card-number">Card Number</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><img src="Assets/Images/lock-icon.svg" alt=""></span>
+                            <input type="text" class="form-control" id="card-number" placeholder="Card Number">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="expiration">Expiration</label>
+                            <input type="text" class="form-control" id="expiration" placeholder="MM/YY">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="cvv">CVV</label>
+                            <input type="text" class="form-control" id="cvv" placeholder="CVV">
+                        </div>
+                    </div>
+
+                    <h5 class="mt-4 mb-4">Billing Address</h5>
+                    <div class="form-group mb-3">
+                        <label for="street-address">Street Address</label>
+                        <input type="text" class="form-control" id="street-address" placeholder="Street Address">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="apt-suite">Apt or suite number</label>
+                        <input type="text" class="form-control" id="apt-suite" placeholder="Apt or suite number">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" id="city" placeholder="City">
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="state">State</label>
+                            <input type="text" class="form-control" id="state" placeholder="State">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="zip">ZIP Code</label>
+                            <input type="text" class="form-control" id="zip" placeholder="ZIP Code">
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    <h5>Required for your trip</h5>
+                    <div class="form-group d-flex justify-content-between align-items-center">
+                        <div>
+                            <label for="phone"><b>Phone Number</b></label>
+                            <p class="mb-0">Add and confirm your phone number to get trip updates.</p>
+                        </div>
+                        <button class="add-phone-btn" id="add-phone">Add</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    
+    <!-- Bootstrap JS Bundle -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

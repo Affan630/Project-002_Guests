@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Import Poppins font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+        * {
+            font-family: 'Poppins', sans-serif;
+            /* Apply Poppins font to all elements */
+        }
+
+        /* Navbar Stylling  */
+        .navbar-brand img {
+            max-width: 135px;
+            margin-right: 5px;
+        }
+
+        .custom-search-bar {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0px 3px 10px #00000014;
+            background: #FFFFFF 0% 0% no-repeat padding-box
+        }
+
+        .search-input {
+            border: none;
+            padding: 0.5rem 1rem;
+            outline: none;
+            min-width: 150px;
+        }
+
+        .search-input:focus {
+            box-shadow: none;
+        }
+
+        .search-divider {
+            height: 1.5rem;
+            width: 1px;
+            background-color: #ddd;
+            margin: 0 0.5rem;
+        }
+
+        .search-icon {
+            background-color: #00aaff;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .profile-image {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .notification-dot {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 8px;
+            height: 8px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        /* MAin Content section  */
+        .main-title {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .location-text {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .info-text {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .total-credit {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .host-info {
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        .rating {
+            color: #fbc02d;
+            font-size: 1rem;
+        }
+
+        /* Photo grid styling */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: repeat(4, 100px);
+            gap: 8px;
+        }
+
+        .photo-grid .main-photo {
+            grid-row: span 4;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .photo-grid .small-photo {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .photo-grid .show-all {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .photo-grid .show-all::after {
+            content: 'Show All Photos';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            border-radius: 8px;
+        }
+
+        .link-style {
+            color: #007bff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .link-style:hover {
+            text-decoration: underline;
+        }
+
+        /* Feature icons and text styling */
+        .feature-icon {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .feature-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 8px;
+        }
+
+        .feature-description {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .divider {
+            border-top: 1px solid #ddd;
+            margin: 20px 0;
+        }
+
+        .description-text {
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .show-more {
+            color: #000000;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .show-more:hover {
+            text-decoration: underline;
+        }
+
+        .section-title {
+            font-weight: bold;
+            font-size: 1.25rem;
+            margin-top: 30px;
+        }
+
+        .sleep-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .sleep-card h6 {
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .sleep-card p {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* footer css */
+        .footer {
+            margin: 0 auto;
+            /* Center the footer */
+            max-width: 100%;
+            /* Ensure it doesn’t exceed the width */
+            background-color: #F3F3F3;
+            /* Light background for footer */
+            padding: 40px 0;
+            /* Vertical padding */
+            border-top: 1px solid #e0e0e0;
+            /* Light top border */
+            overflow: hidden;
+            /* Prevent overflow */
+        }
+
+        .footer h5 {
+            font-weight: bold;
+            /* Bold titles */
+        }
+
+        .footer a {
+            color: #000;
+            /* Black color for links */
+            text-decoration: none;
+            /* Remove underline */
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+            /* Underline on hover */
+        }
+
+        .footer .social-icons a {
+            margin: 0 10px;
+            /* Space between social icons */
+            color: #000;
+            /* Black color for social icons */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NavBar -->
+    <nav class="navbar navbar-expand-lg  ">
+        <div class="container-fluid">
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="Assets/Images/logo.png" alt="Logo" class="me-2">
+            </a>
+
+            <!-- Custom Search bar -->
+            <div class="custom-search-bar mx-4 ">
+                <input type="text" class="search-input" placeholder="Where" aria-label="Search Destination">
+                <div class="search-divider"></div>
+                <input type="text" class="search-input" placeholder="Check In" aria-label="Check In">
+                <div class="search-divider"></div>
+                <input type="text" class="search-input" placeholder="Check Out" aria-label="Check Out">
+                <div class="search-divider"></div>
+                <input type="text" class="search-input" placeholder="Who" aria-label="Who">
+                <button class="search-icon"><i class="bi bi-search"></i></button>
+            </div>
+
+            <!-- Right side icons and profile -->
+            <ul class="navbar-nav ms-auto align-items-center">
+                <!-- Notifications -->
+                <a href="#" class="nav-link position-relative me-3">
+                    <i class="bi bi-bell-fill" style="font-size: 1.5rem; color: #007bff"></i>
+                    <span
+                        class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+                        <span class="visually-hidden">New alerts</span>
+                    </span>
+                </a>
+
+                <!-- Switch to hosting -->
+                <li class="nav-item me-3">
+                    <a href="#" class="nav-link">Switch to hosting</a>
+                </li>
+
+                <!-- Profile dropdown -->
+                <div class="dropdown">
+                    <a class="d-flex align-items-center text-decoration-none" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="Assets/images/profile-pic-mark.png" alt="Profile Picture" class="rounded-circle"
+                            width="40" height="40" />
+                        <div class="ms-2">
+                            <span class="text-dark">Mark William</span><br />
+                            <small class="text-dark">Employee</small>
+                            <!-- Dropdown icon -->
+                            <i class="fa-sharp fa-solid fa-caret-down text-dark ms-1"></i>
+                            <br />
+                            <!-- Small text for Employee -->
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Notifications</a></li>
+                        <li><a class="dropdown-item" href="#">Messages</a></li>
+                        <li>
+                            <hr class="dropdown-divider" />
+                        </li>
+                        <li><a class="dropdown-item" href="#">Gift cards</a></li>
+                        <li class="px-3 text-muted">
+                            Bonstay credits can be applied to gift card
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider" />
+                        </li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li>
+                            <a class="dropdown-item" href="#">Switch for hosting</a>
+                        </li>
+                    </ul>
+                </div>
+            </ul>
+        </div>
+    </nav>
+    <!-- Main Content Section  -->
+    <div class="container">
+        <div class="row">
+            <!-- Left Section: Photo Grid and Details -->
+            <div class="col-lg-8 mt-4">
+                <!-- Back Link -->
+                <div class="mb-3">
+                    <a href="#" class="text-muted">&lt; Reservation</a>
+                </div>
+
+                <!-- Photo Grid -->
+                <div class="photo-grid mb-3">
+                    <img src="Assets/Images/resv-pic1.png" alt="Main photo" class="main-photo">
+                    <img src="Assets/Images/resv-pic2.png" alt="Small photo 1" class="small-photo">
+                    <img src="Assets/Images/resv-pic3.png" alt="Small photo 2" class="small-photo">
+                    <img src="Assets/Images/resv-pic4.png" alt="Small photo 3" class="small-photo">
+                    <div class="show-all small-photo">
+                        <img src="Assets/Images/resv-pic5.png" alt="Small photo 4" class="small-photo">
+                    </div>
+                </div>
+
+                <!-- Details Section -->
+                <h3 class="main-title">Majorsgrund - Private Island</h3>
+                <p class="location-text">Island in Malax, Finland</p>
+                <p class="info-text">14 guests · 3 bedrooms · 13 beds · 1.5 baths</p>
+                <p class="mb-2">
+                    <span>Total <span class="total-credit">$3499</span> Bonstay Credit Earned</span>
+                    <a href="#" class="link-style">(Learn More)</a>
+                </p>
+                <div class="d-flex align-items-center mb-2">
+                    <div class="rating me-1">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <span class="ms-2">4.95</span>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                    <img src="https://via.placeholder.com/40" alt="Host" class="rounded-circle me-2"
+                        style="width: 40px; height: 40px;">
+                    <div>
+                        <p class="mb-0 host-info">Hosted by Timo Und Jannis</p>
+                        <p class="text-muted small mb-0">4 years hosting</p>
+                    </div>
+                </div>
+                <a href="#" class="text-muted">&#9873; Report this listing</a>
+                <hr>
+                <!-- Feature Section -->
+                <div class="row text-center mb-4">
+                    <div class="col-md-4">
+                        <div class="feature-icon">🖥️</div>
+                        <div class="feature-title">Dedicated workspace</div>
+                        <div class="feature-description">A room with wifi that’s well-suited for working.</div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-icon">📍</div>
+                        <div class="feature-title">Great location</div>
+                        <div class="feature-description">100% of recent guests gave the location a 5-star rating.</div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-icon">📅</div>
+                        <div class="feature-title">Free cancellation before May 23</div>
+                        <div class="feature-description">Get a full refund if you change your mind.</div>
+                    </div>
+                </div>
+
+                <!-- Divider -->
+                <div class="divider"></div>
+
+                <!-- Description Section -->
+                <div class="description-text mb-4">
+                    <p>Welcome you adventurers, nature lovers, and island lovers!<br>
+                        Living on a lonely island like Robinson Crusoe, enjoying the midnight sun, being enchanted by
+                        silence and beautiful nature?<br>
+                        Majorsgrund is your chance to make this dream come true.<br>
+                        Our picturesque private island is located in one of the most exciting regions of Finland.
+                    </p>
+                    <a href="#" class="show-more">Show More</a>
+                </div>
+
+                <!-- Divider -->
+                <div class="divider"></div>
+
+                <!-- Where You'll Sleep Section -->
+                <div class="section-title mb-3">Where you’ll sleep</div>
+                <div class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="sleep-card">
+                                        <div>🛏️</div>
+                                        <h6>Bedroom 1</h6>
+                                        <p>1 queen bed, 1 double bed, 2 single beds</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="sleep-card">
+                                        <div>🛏️</div>
+                                        <h6>Bedroom 2</h6>
+                                        <p>1 queen bed, 1 bunk bed</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="sleep-card">
+                                        <div>🛋️</div>
+                                        <h6>Living room 1</h6>
+                                        <p>2 sofa beds</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="sleep-card">
+                                        <div>🛏️</div>
+                                        <h6>Bedroom 3</h6>
+                                        <p>1 double bed, 1 single bed</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Additional carousel items if more rooms are needed -->
+                        <div class="carousel-item">
+                            <div class="row">
+                                <!-- More sleep-cards can be added here for additional rooms if required -->
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            <!-- Right Sidebar -->
+            <div class="col-lg-4 mt-5">
+                <!-- Sidebar content (use the code from previous sections for reservation details) -->
+                <div class="card shadow-sm p-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="strike-through me-2">$464</span>
+                        <span class="price-text">$274 Night</span>
+                    </div>
+
+                    <!-- Check-in and Check-out Fields -->
+                    <div class="mb-3">
+                        <label for="checkIn" class="form-label text-muted">Check In</label>
+                        <input type="text" class="form-control" id="checkIn" placeholder="MM/DD/YYYY">
+                    </div>
+                    <div class="mb-3">
+                        <label for="checkOut" class="form-label text-muted">Check Out</label>
+                        <input type="text" class="form-control" id="checkOut" placeholder="MM/DD/YYYY">
+                    </div>
+
+                    <!-- Guest Field -->
+                    <div class="mb-4">
+                        <label for="guest" class="form-label text-muted">Guest</label>
+                        <input type="text" class="form-control" id="guest" placeholder="Add Guests">
+                    </div>
+
+                    <!-- Reserve Button -->
+                    <button class="btn btn-primary w-100 mb-3">Reserve</button>
+                    <p class="text-muted text-center mb-4">You won’t be charged yet</p>
+
+                    <!-- Pricing Summary -->
+                    <div>
+                        <div class="summary-item d-flex justify-content-between">
+                            <span>$274 x 5 nights</span>
+                            <span>$1,370</span>
+                        </div>
+                        <div class="summary-item d-flex justify-content-between">
+                            <span>Cleaning fee</span>
+                            <span>$150</span>
+                        </div>
+                        <div class="summary-item d-flex justify-content-between">
+                            <span>20% Bonstay service fee</span>
+                            <span>$304</span>
+                        </div>
+                        <div class="summary-item d-flex justify-content-between">
+                            <span>Tax</span>
+                            <span>$20.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Bonstay Credits Dropdown -->
+                    <div class="mt-4">
+                        <div class="dropdown w-100">
+                            <button class="btn btn-light dropdown-toggle w-100" type="button" id="creditsDropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Apply Bonstay Credits
+                            </button>
+                            <ul class="dropdown-menu w-100" aria-labelledby="creditsDropdown">
+                                <li class="px-3 pt-2 text-muted">Total Credits</li>
+                                <li class="px-3 pb-2">
+                                    <input type="text" class="form-control" placeholder="$1080" readonly>
+                                </li>
+                                <li class="px-3 pb-3">
+                                    <input type="text" class="form-control" placeholder="$00.00">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Total Including Taxes -->
+                    <div class="mt-4 d-flex justify-content-between">
+                        <span>Total Including taxes</span>
+                        <span class="fw-bold">$1,844</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+    <div class="footer">
+        <div class="row text-center"> <!-- Center text within the row -->
+            <div class="col-md-4">
+                <h5>Support</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">BonstayCover</a></li>
+                    <li><a href="#">Anti-discrimination</a></li>
+                    <li><a href="#">Disability support</a></li>
+                    <li><a href="#">Cancellation options</a></li>
+                    <li><a href="#">Report neighborhood concern</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5>Hosting</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#">bonstay your home</a></li>
+                    <li><a href="#">BonCover for Hosts</a></li>
+                    <li><a href="#">Hosting resources</a></li>
+                    <li><a href="#">Community forum</a></li>
+                    <li><a href="#">Hosting responsibly</a></li>
+                    <li><a href="#">Bonstay-friendly apartments</a></li>
+                    <li><a href="#">Join a free Hosting class</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5>Bonstay</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#">Newsroom</a></li>
+                    <li><a href="#">New features</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Investors</a></li>
+                    <li><a href="#">Gift cards</a></li>
+                    <li><a href="#">Bonstay.org emergency stays</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr class="my-4"> <!-- Horizontal line -->
+        <div class="row justify-content-between align-items-center text-center"> <!-- Center text within the row -->
+            <div class="col-md-6">
+                <p class="mb-0 d-inline fs-6">&copy; 2024 Bonstay</p>
+                <div class="footer-links d-inline">
+                    <a href="#" class="text-decoration-none mx-2">Terms</a>
+                    <span class="mx-2">|</span>
+                    <a href="#" class="text-decoration-none mx-2">Sitemap</a>
+                    <span class="mx-2">|</span>
+                    <a href="#" class="text-decoration-none mx-2">Privacy</a>
+                    <span class="mx-2">|</span>
+                    <a href="#" class="text-decoration-none mx-2">Your Privacy Choices</a>
+                </div>
+            </div>
+            <div class="col-md-6 social-icons">
+                <a href="#"><i class="fa-solid fa-globe"> English</i></a>
+                <a href="#" class="mx-5"><i class="fa-solid fa-dollar-sign"> USD</i> </a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.3/font/bootstrap-icons.min.css">
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
