@@ -2,470 +2,693 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bonstay Dashboard</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bonstay Reservation</title>
     <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <style>
-        /* Styles for the sidebar */
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="/Css/page-32.css" />
+    <!-- Include Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+</head>
+<style>
+    /* Navbar css start*/
+
+    /* Import Poppins font */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+    * {
+        font-family: 'Poppins', sans-serif;
+        /* Apply Poppins font to all elements */
+    }
+
+
+
+    /* Navbar Styles */
+
+    /* Navbar Styles */
+
+    /* Placeholder text smaller on mobile */
+    @media (max-width: 768px) {
+        .form-control::placeholder {
+            font-size: 0.8rem;
+            /* Smaller font size for placeholders */
+        }
+
+        .search-bar {
+            margin-top: 10px;
+            /* Add top margin for mobile */
+            margin-bottom: 5px;
+            /* Add top margin for mobile */
+        }
+    }
+
+    .search-bar .form-control {
+        border-right: 1px solid #ccc;
+        border-radius: 0;
+    }
+
+    .search-bar .form-control:last-child {
+        border-right: none;
+    }
+
+    .search-bar .btn-primary {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        background-color: #007bff;
+        border: none;
+    }
+
+    .navbar-brand img {
+        height: auto;
+    }
+
+    /* Notification icon styling */
+    .bi-bell-fill {
+        color: #007bff;
+    }
+
+    /* Notification dot */
+    .position-absolute {
+        top: 0;
+        right: 0;
+        width: 8px;
+        height: 8px;
+        background-color: red;
+        border-radius: 50%;
+    }
+
+    /* Profile picture and dropdown */
+    .dropdown-toggle img {
+        margin-right: 8px;
+    }
+
+    .dropdown-menu {
+        min-width: 200px;
+    }
+
+    /* side bar css */
+
+    .sidebar {
+        background-color: #F5F6FA;
+        /* White background */
+        border-right: 1px solid #e0e0e0;
+        /* Right border */
+        height: 100vh;
+        /* Full height */
+    }
+
+    .sidebar h5 {
+        font-weight: bold;
+        /* Bold for heading */
+        color: #007bff;
+        /* Primary color */
+        margin-bottom: 15px;
+        /* Space below heading */
+    }
+
+    .menu-item {
+        padding: 10px 0px 10px 113px;
+        /* Space for each menu item */
+        cursor: pointer;
+        /* Pointer on hover */
+    }
+
+    .Menu-hover:hover {
+        color: #007bff;
+        /* Color on hover */
+        background-color: #e9ecef;
+        /* Light gray background on hover */
+    }
+
+    .active {
+        background-color: #007bff;
+        /* Active item background */
+        color: white;
+        /* Active item text color */
+        border-radius: 0px 20px 20px 0px;
+    }
+
+    /* Off canvas */
+    .offcanvas {
+        width: 250px;
+        /* Set width for offcanvas */
+    }
+
+    /* Optional: Add hover effect for menu items */
+    .menu-item {
+        transition: background-color 0.3s;
+    }
+
+    .menu-hover:hover {
+        background-color: #e9ecef;
+        /* Light gray background on hover */
+    }
+
+    /* Hamburger */
+    .navbar-toggler {
+        border: none;
+        /* Remove default border */
+    }
+
+    .navbar-toggler-icon {
+        background-color: #007bff;
+        /* Customize the color of the hamburger icon */
+        width: 30px;
+        /* Width of the icon */
+        height: 30px;
+        /* Height of the icon */
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 990px) {
+        .container {
+            padding: 15px;
+            /* Less padding on smaller screens */
+            width: 209%;
+            /* Ensure it takes up more width on smaller screens */
+        }
+
         .sidebar {
-            width: 20%;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background-color: #f8f9fa;
-            border-right: 1px solid #e3e3e3;
-            padding-top: 20px;
-            transition: all 0.3s;
-            z-index: 2;
+            display: none;
         }
 
-        .sidebar .logo {
-            text-align: center;
-            margin-bottom: 40px;
+        .btn-link {
+            font-size: 0.9rem;
+            /* Slightly smaller buttons on mobile */
+            margin: 2px;
+            /* Less margin on mobile */
+            flex: 1 0 45%;
+            /* Allow buttons to take 45% width for two buttons per row */
         }
 
-        .sidebar .logo img {
-            width: 150px;
+        h2 {
+            font-size: 1.5rem;
+            /* Smaller heading on mobile */
         }
 
-        .sidebar a {
-            padding: 15px 25px;
-            text-decoration: none;
-            font-size: 18px;
-            color: #333;
-            display: block;
+        .reservations-box {
+            min-height: 120px;
+            /* Adjust height for smaller screens */
         }
+    }
 
-        .sidebar a:hover {
-            background-color: #007bff;
-            color: white;
-        }
+    /* Base Styles (You can add your existing styles here) */
 
-        .sidebar .active {
-            background-color: #007bff;
-            color: white;
-            border-radius: 30px;
-        }
-
-        .sidebar i {
-            margin-right: 10px;
-        }
-
-        /* Navbar Styles */
-        .navbar-custom {
-            margin-left: 225px;
-            padding: 20px;
-            background-color: white;
-            border-bottom: 1px solid #e3e3e3;
-            z-index: 1;
-            transition: margin-left 0.3s;
-        }
-
-        .form-control-custom {
-            border-radius: 30px;
-            border: 1px solid #ccc;
-            padding: 10px;
-        }
-
-        .search-section {
+    @media (max-width: 1440px) {
+        .container {
+            margin-left: auto;
+            /* Center the container */
+            margin-right: auto;
+            /* Center the container */
+            padding: 15px;
+            /* Less padding on smaller screens */
             width: 100%;
+            /* Use full width on smaller screens */
+            max-width: 600px;
+            /* Keep a max width for better layout */
         }
 
-        .search-section input {
-            border-radius: 10px;
-            border: 1px solid #ddd;
-            padding: 8px 12px;
-            margin-right: 10px;
+        .btn-link {
+            font-size: 0.9rem;
+            /* Slightly smaller buttons */
+            margin: 2px;
+            /* Less margin on mobile */
+            flex: 1 1 auto;
+            /* Allow buttons to take available space */
         }
 
-        .search-section button {
-            background-color: #007bff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
-            color: white;
+        h2 {
+            font-size: 1.5rem;
+            /* Smaller heading */
         }
 
-        .navbar-end {
-            display: flex;
-            align-items: center;
-            gap: 30px;
+        .reservations-box {
+            min-height: 120px;
+            /* Adjust height */
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .container {
+            padding: 15px;
+            /* Less padding on smaller screens */
+            width: 100%;
+            /* Full width */
+            max-width: 600px;
+            /* Keep max-width consistent */
         }
 
-        .navbar-end .nav-link {
-            color: #333;
-            font-weight: 500;
-            cursor: pointer;
+        .btn-link {
+            font-size: 0.9rem;
+            /* Slightly smaller buttons */
+            margin: 2px;
+            /* Less margin on mobile */
+            flex: 1 1 auto;
+            /* Allow buttons to take available space */
         }
 
-        .profile-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        h2 {
+            font-size: 1.5rem;
+            /* Smaller heading */
         }
 
-        .profile-info img {
-            border-radius: 50%;
-            width: 40px;
+        .reservations-box {
+            min-height: 120px;
+            /* Adjust height */
+        }
+    }
+
+
+    @media (max-width: 425px) {
+        .container {
+            max-width: 90%;
+            /* Wider container on very small screens */
         }
 
-        .notification {
-            font-size: 1.3rem;
-            cursor: pointer;
+        h2 {
+            font-size: 1.25rem;
+            /* Smaller heading for very small screens */
+        }
+    }
+
+    /* footer css */
+
+    .footer {
+        margin: 0 auto;
+        /* Center the footer */
+        max-width: 100%;
+        /* Ensure it doesn’t exceed the width */
+        background-color: #F3F3F3;
+        /* Light background for footer */
+        padding: 40px 0;
+        /* Vertical padding */
+        border-top: 1px solid #e0e0e0;
+        /* Light top border */
+        overflow: hidden;
+        /* Prevent overflow */
+    }
+
+    .footer h5 {
+        font-weight: bold;
+        /* Bold titles */
+    }
+
+    .footer a {
+        color: #000;
+        /* Black color for links */
+        text-decoration: none;
+        /* Remove underline */
+    }
+
+    .footer a:hover {
+        text-decoration: underline;
+        /* Underline on hover */
+    }
+
+    .footer .social-icons a {
+        margin: 0 10px;
+        /* Space between social icons */
+        color: #000;
+        /* Black color for social icons */
+    }
+
+    /* Main Content Stylling */
+    /* Body container for the main content */
+    .card {
+        border: none;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+    }
+
+    .card img {
+        border-radius: 10px;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .price {
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    .rating {
+        color: #f39c12;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 991px) {
+        .sidebar {
+            width: 100%;
+            height: auto;
+            position: relative;
         }
 
-        .active-link {
-            color: #007bff;
-            font-weight: 600;
-            border-bottom: 3px solid #007bff;
+        .navbar-custom {
+            margin-left: 0;
         }
 
-        /* Extra styles for alignment and aesthetics */
         .search-box {
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
-            margin-left: 25%;
+            margin-left: 0%;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .search-box {
+            flex-direction: column;
         }
 
-        .divider {
-            width: 2px;
-            height: 24px;
-            background-color: #ddd;
+        .navbar-end {
+            flex-direction: row;
+            gap: 30px;
         }
 
-        .search-box input {
-            flex: 1;
-            min-width: 150px;
+        .navbar-custom {
+            padding: 10px;
         }
 
-        /* Body container for the main content */
-        .card {
-            border: none;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
+        .search-box {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-left: 0%;
         }
-
-        .card img {
-            border-radius: 10px;
-        }
-
-        .card-body {
-            padding: 15px;
-        }
-
-        .price {
-            font-weight: bold;
-            color: #007bff;
-        }
-
-        .rating {
-            color: #f39c12;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 991px) {
-            .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-            }
-
-            .navbar-custom {
-                margin-left: 0;
-            }
-
-            .search-box {
-                display: flex;
-                gap: 10px;
-                flex-wrap: wrap;
-                margin-left: 0%;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .search-box {
-                flex-direction: column;
-            }
-
-            .navbar-end {
-                flex-direction: row;
-                gap: 30px;
-            }
-
-            .navbar-custom {
-                padding: 10px;
-            }
-
-            .search-box {
-                display: flex;
-                gap: 10px;
-                flex-wrap: wrap;
-                margin-left: 0%;
-            }
-        }
-    </style>
-</head>
+    }
+</style>
 
 <body>
-    <div class="container-fluid">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <!-- Logo at the top of the sidebar -->
-            <div class="logo mt-4">
-                <img src="Assets/images/logo.png" alt="Bonstay Logo">
-            </div>
-            <hr>
-            <!-- Navigation Links -->
-            <div class="">
-                <a href="#" class="active"><i class="fas fa-home"></i> Cabins</a>
-                <a href="#"><i class="fas fa-water"></i> Beach Front</a>
-                <a href="#"><i class="fas fa-handshake"></i> Conference</a>
-                <a href="#"><img src="Assets/images/island_logo.png" alt=""> Islands</a>
-                <a href="#"><i class="fas fa-mountain"></i> Mountains</a>
-                <a href="#"><i class="fas fa-ship"></i> Lake</a>
-                <a href="#"><i class="fas fa-hotel"></i> Hotels</a>
-                <a href="#"><i class="fas fa-umbrella-beach"></i> Tropical</a>
-                <a href="#"><i class="fas fa-calendar"></i> Events</a>
-            </div>
-        </div>
-        <!-- Navbar -->
-        <nav class="navbar navbar-custom">
-            <div class="container-fluid">
-                <div class="row w-100 align-items-center">
-                    <!-- Left side: Search section -->
-                    <div class="col-lg-6 col-md-12">
-                        <div class="search-box">
-                            <input type="text" class="form-control" placeholder="Where" aria-label="Where">
-                            <input type="text" class="form-control" placeholder="Check In" aria-label="Check In">
-                            <input type="text" class="form-control" placeholder="Check Out" aria-label="Check Out">
-                            <input type="text" class="form-control" placeholder="Who" aria-label="Who">
-                            <button type="button" class="btn btn-primary">
-                                <i class="bi bi-search"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Right side: Nav links, profile, and icons -->
-                    <div class="col-lg-6 col-md-12 d-flex justify-content-end align-items-center">
-                        <div class="navbar-end">
-                            <a href="#" class="nav-link active-link">Stays</a>
-                            <a href="#" class="nav-link">Rating System</a>
-                            <a href="#" class="nav-link">Switch to hosting</a>
-                            <div class="divider"></div>
-                            <!-- Notifications Icon -->
-                            <a href="#" class="nav-link position-relative me-3">
-                                <i class="bi bi-bell-fill" style="font-size: 1.5rem; color: #007bff"></i>
-                                <span
-                                    class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
-                                    <span class="visually-hidden">New alerts</span>
-                                </span>
-                            </a>
-                            <!-- User Profile -->
-                            <div class="dropdown">
-                                <a class="d-flex align-items-center text-decoration-none" href="#" id="navbarDropdown"
-                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="Assets/images/profile-pic-mark.png" alt="Profile Picture"
-                                        class="rounded-circle" width="40" height="40" />
-                                    <div class="ms-2">
-                                        <span class="text-dark">Mark William</span><br />
-                                        <small class="text-dark">Employee</small>
-                                        <!-- Dropdown icon -->
-                                        <i class="fa-sharp fa-solid fa-caret-down text-dark ms-1"></i>
-                                        <br />
-                                    </div>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="#">Notifications</a></li>
-                                    <li><a class="dropdown-item" href="#">Messages</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider" />
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Gift cards</a></li>
-                                    <li class="px-3 text-muted">
-                                        Bonstay credits can be applied to gift card
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider" />
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Log Out</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
         <div class="container-fluid">
-            <div class="row mt-4">
-                <div class="col-md-9 offset-md-3">
-                    <!-- Cards Container -->
-                    <h2 class="mb-4">Feature</h2>
-                    <div class="row">
-                        <!-- Feature Card (Full width on mobile, half on tablet, quarter on large screens) -->
-                        <div class="col-md-6 col-lg-4 col-xl-3">
-                            <div class="card">
-                                <img src="Assets/Images/island-1.png" class="card-img-top" alt="Island Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">Lorem Ipsum Island</h5>
-                                    <p class="card-text">2.4 Hectares<br>May 24-29</p>
-                                    <p class="price">$320/Night</p>
-                                    <p><span class="rating">★ 4.95</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 col-xl-3">
-                            <div class="card">
-                                <img src="Assets/Images/island-2.png" class="card-img-top" alt="Island Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">Lorem Ipsum Island</h5>
-                                    <p class="card-text">2.4 Hectares<br>May 24-29</p>
-                                    <p class="price">$320/Night</p>
-                                    <p><span class="rating">★ 4.95</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 col-xl-3">
-                            <div class="card">
-                                <img src="Assets/Images/island-3.png" class="card-img-top" alt="Island Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">Lorem Ipsum Island</h5>
-                                    <p class="card-text">2.4 Hectares<br>May 24-29</p>
-                                    <p class="price">$320/Night</p>
-                                    <p><span class="rating">★ 4.95</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-4 col-xl-3">
-                            <div class="card">
-                                <img src="Assets/Images/island-4.png" class="card-img-top" alt="Island Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">Lorem Ipsum Island</h5>
-                                    <p class="card-text">2.4 Hectares<br>May 24-29</p>
-                                    <p class="price">$320/Night</p>
-                                    <p><span class="rating">★ 4.95</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Repeat similar cards for the feature section -->
-                    </div>
+            <!-- Logo -->
+            <a class="navbar-brand" href="#">
+                <img src="Assets/images/logo.png" alt="Bonstay" width="120" />
+            </a>
 
-                    <!-- Cabins Section -->
-                    <h2 class="mb-4">Cabins</h2>
-                    <div class="row">
-                        <!-- Card 1 -->
-                        <div class="col-md-6 col-lg-4 col-xl-3">
-                            <div class="card">
-                                <img src="Assets/Images/island-1.png" class="card-img-top" alt="Island Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">Lorem Ipsum Island</h5>
-                                    <p class="card-text">2.4 Hectares<br>May 24-29</p>
-                                    <p class="price">$320/Night</p>
-                                    <p><span class="rating">★ 4.95</span></p>
-                                </div>
+            <!-- Toggle button for mobile view -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Search bar -->
+            <form class="d-flex align-items-center search-bar mx-3 flex-grow-1">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search Destination" aria-label="Where" />
+                    <input type="text" class="form-control" placeholder="Add Dates" aria-label="Check In" />
+                    <input type="text" class="form-control" placeholder="Add Dates" aria-label="Check Out" />
+                    <input type="text" class="form-control" placeholder="Add Guests" aria-label="Who" />
+                    <button class="btn btn-primary" type="submit" style="border-radius: 0;">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Right side - Hosting, Notifications, User Profile -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="d-flex align-items-center ms-auto">
+                    <!-- Switch to hosting -->
+                    <a class="nav-link me-3 text-decoration-underline" href="#">Switch to hosting</a>
+
+                    <!-- Notifications Icon -->
+                    <a href="#" class="nav-link position-relative me-3">
+                        <i class="bi bi-bell-fill" style="font-size: 1.5rem; color: #007bff;"></i>
+                        <span
+                            class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+                            <span class="visually-hidden">New alerts</span>
+                        </span>
+                    </a>
+
+                    <!-- User Profile -->
+                    <div class="dropdown">
+                        <a class="d-flex align-items-center text-decoration-none" href="#" id="navbarDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="Assets/images/profile-pic-mark.png" alt="Profile Picture" class="rounded-circle"
+                                width="40" height="40" />
+                            <div class="ms-2">
+                                <span class="text-dark">Mark William</span>
+                                <i class="fa-sharp fa-solid fa-caret-down text-dark"></i><!-- Dropdown icon -->
+                                <br>
+                                <small class="text-dark">Employee</small> <!-- Small text for Employee -->
                             </div>
-                        </div>
-                        <!-- Card 2 -->
-                        <div class="col-md-6 col-lg-4 col-xl-3">
-                            <div class="card">
-                                <img src="Assets/Images/island-2.png" class="card-img-top" alt="Island Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">Lorem Ipsum Island</h5>
-                                    <p class="card-text">2.4 Hectares<br>May 24-29</p>
-                                    <p class="price">$320/Night</p>
-                                    <p><span class="rating">★ 4.95</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card 3 -->
-                        <div class="col-md-6 col-lg-4 col-xl-3">
-                            <div class="card">
-                                <img src="Assets/Images/island-3.png" class="card-img-top" alt="Island Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">Lorem Ipsum Island</h5>
-                                    <p class="card-text">2.4 Hectares<br>May 24-29</p>
-                                    <p class="price">$320/Night</p>
-                                    <p><span class="rating">★ 4.95</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card 4 -->
-                        <div class="col-md-6 col-lg-4 col-xl-3">
-                            <div class="card">
-                                <img src="Assets/Images/island-4.png" class="card-img-top" alt="Island Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">Lorem Ipsum Island</h5>
-                                    <p class="card-text">2.4 Hectares<br>May 24-29</p>
-                                    <p class="price">$320/Night</p>
-                                    <p><span class="rating">★ 4.95</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Cards Replicated  -->
-                        <!-- Card 1 -->
-                        <div class="col-md-6 col-lg-4 col-xl-3">
-                            <div class="card">
-                                <img src="Assets/Images/island-1.png" class="card-img-top" alt="Island Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">Lorem Ipsum Island</h5>
-                                    <p class="card-text">2.4 Hectares<br>May 24-29</p>
-                                    <p class="price">$320/Night</p>
-                                    <p><span class="rating">★ 4.95</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card 2 -->
-                        <div class="col-md-6 col-lg-4 col-xl-3">
-                            <div class="card">
-                                <img src="Assets/Images/island-2.png" class="card-img-top" alt="Island Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">Lorem Ipsum Island</h5>
-                                    <p class="card-text">2.4 Hectares<br>May 24-29</p>
-                                    <p class="price">$320/Night</p>
-                                    <p><span class="rating">★ 4.95</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card 3 -->
-                        <div class="col-md-6 col-lg-4 col-xl-3">
-                            <div class="card">
-                                <img src="Assets/Images/island-3.png" class="card-img-top" alt="Island Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">Lorem Ipsum Island</h5>
-                                    <p class="card-text">2.4 Hectares<br>May 24-29</p>
-                                    <p class="price">$320/Night</p>
-                                    <p><span class="rating">★ 4.95</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card 4 -->
-                        <div class="col-md-6 col-lg-4 col-xl-3">
-                            <div class="card">
-                                <img src="Assets/Images/island-4.png" class="card-img-top" alt="Island Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">Lorem Ipsum Island</h5>
-                                    <p class="card-text">2.4 Hectares<br>May 24-29</p>
-                                    <p class="price">$320/Night</p>
-                                    <p><span class="rating">★ 4.95</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Add more cards as necessary -->
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Notifications</a></li>
+                            <li><a class="dropdown-item" href="#">Messages</a></li>
+                            <li class="px-3">
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item" href="#">Gift cards</a></li>
+                            <li class="px-3 text-muted">Bonstay credits can be applied to gift card</li>
+                            <li class="px-3">
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Switch for hosting</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
+    </nav>
+
+    <!-- Trigger button for Offcanvas -->
+    <button class="btn btn-outline-primary d-lg-none mx-2 my-2" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#sidebarOffcanvas" aria-controls="sidebarOffcanvas" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i> <!-- Font Awesome hamburger icon -->
+    </button>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-4 col-lg-3 sidebar p-3">
+                <div class="menu-item active mt-4 mb-2"><img src="Assets/Images/cabin-icon.png" alt="#"> Cabins</div>
+                <div class="menu-item Menu-hover mb-2"><img src="Assets/Images/beach-icon.png" alt="#"> Beach Front
+                </div>
+                <div class="menu-item Menu-hover mb-2"><img src="Assets/Images/conferrence-icon.png"> Conference</div>
+                <div class="menu-item Menu-hover mb-2"><img src="Assets/Images/island-icon.png" alt="#"> Islands</div>
+                <div class="menu-item Menu-hover mb-2"><img src="Assets/Images/mountains-icons.png" alt="#"> Mountains
+                </div>
+                <div class="menu-item Menu-hover mb-2"><img src="Assets/Images/lake-icon.png" alt="#"> Lake</div>
+                <div class="menu-item Menu-hover mb-2"><img src="Assets/Images/hotel-icon.png" alt="#"> Hotels</div>
+                <div class="menu-item Menu-hover mb-2"><img src="Assets/Images/tropical-icon.png" alt="#"> Tropical
+                </div>
+                <div class="menu-item Menu-hover mb-2"><img src="Assets/Images/events-icon.png" alt="#"> Events</div>
+            </div>
+
+            <div class="col-md-12 col-lg-9 col-sm-12">
+                <!-- <div class="container"> -->
+                <div class="container-fluid mt-5 ">
+                    <div class="row mt-4">
+
+                        <!-- Cards Container -->
+                        <h2 class="mb-4">Feature</h2>
+                        <div class="row">
+                            <!-- Feature Card (Full width on mobile, half on tablet, quarter on large screens) -->
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="card"><a href="page-10.html" class="text-decoration-none text-black">
+                                        <img src="Assets/Images/island-1.png" class="card-img-top" alt="Island Image">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Lorem Ipsum Island</h5>
+                                            <p class="card-text">2.4 Hectares<br>May 24-29</p>
+                                            <p class="price">$320/Night</p>
+                                            <p><span class="rating">★ 4.95</span></p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="card"><a href="page-10.html" class="text-decoration-none text-black">
+                                        <img src="Assets/Images/island-2.png" class="card-img-top" alt="Island Image">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Lorem Ipsum Island</h5>
+                                            <p class="card-text">2.4 Hectares<br>May 24-29</p>
+                                            <p class="price">$320/Night</p>
+                                            <p><span class="rating">★ 4.95</span></p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="card"><a href="page-10.html" class="text-decoration-none text-black">
+                                        <img src="Assets/Images/island-3.png" class="card-img-top" alt="Island Image">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Lorem Ipsum Island</h5>
+                                            <p class="card-text">2.4 Hectares<br>May 24-29</p>
+                                            <p class="price">$320/Night</p>
+                                            <p><span class="rating">★ 4.95</span></p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="card"><a href="page-10.html" class="text-decoration-none text-black">
+                                        <img src="Assets/Images/island-4.png" class="card-img-top" alt="Island Image">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Lorem Ipsum Island</h5>
+                                            <p class="card-text">2.4 Hectares<br>May 24-29</p>
+                                            <p class="price">$320/Night</p>
+                                            <p><span class="rating">★ 4.95</span></p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Repeat similar cards for the feature section -->
+                        </div>
+                        <!-- Cabins Section -->
+                        <h2 class="mb-4">Cabins</h2>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="card"><a href="page-10.html" class="text-decoration-none text-black">
+                                        <img src="Assets/Images/island-1.png" class="card-img-top" alt="Island Image">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Lorem Ipsum Island</h5>
+                                            <p class="card-text">2.4 Hectares<br>May 24-29</p>
+                                            <p class="price">$320/Night</p>
+                                            <p><span class="rating">★ 4.95</span></p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="card"><a href="page-10.html" class="text-decoration-none text-black">
+                                        <img src="Assets/Images/island-2.png" class="card-img-top" alt="Island Image">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Lorem Ipsum Island</h5>
+                                            <p class="card-text">2.4 Hectares<br>May 24-29</p>
+                                            <p class="price">$320/Night</p>
+                                            <p><span class="rating">★ 4.95</span></p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="card"><a href="page-10.html" class="text-decoration-none text-black">
+                                        <img src="Assets/Images/island-3.png" class="card-img-top" alt="Island Image">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Lorem Ipsum Island</h5>
+                                            <p class="card-text">2.4 Hectares<br>May 24-29</p>
+                                            <p class="price">$320/Night</p>
+                                            <p><span class="rating">★ 4.95</span></p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="card"><a href="page-10.html" class="text-decoration-none text-black">
+                                        <img src="Assets/Images/island-4.png" class="card-img-top" alt="Island Image">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Lorem Ipsum Island</h5>
+                                            <p class="card-text">2.4 Hectares<br>May 24-29</p>
+                                            <p class="price">$320/Night</p>
+                                            <p><span class="rating">★ 4.95</span></p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Cards Replicated  -->
+                            <!-- Card 1 -->
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="card"><a href="page-10.html" class="text-decoration-none text-black">
+                                        <img src="Assets/Images/island-1.png" class="card-img-top" alt="Island Image">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Lorem Ipsum Island</h5>
+                                            <p class="card-text">2.4 Hectares<br>May 24-29</p>
+                                            <p class="price">$320/Night</p>
+                                            <p><span class="rating">★ 4.95</span></p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Card 2 -->
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="card"><a href="page-10.html" class="text-decoration-none text-black">
+                                        <img src="Assets/Images/island-2.png" class="card-img-top" alt="Island Image">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Lorem Ipsum Island</h5>
+                                            <p class="card-text">2.4 Hectares<br>May 24-29</p>
+                                            <p class="price">$320/Night</p>
+                                            <p><span class="rating">★ 4.95</span></p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Card 3 -->
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="card"><a href="page-10.html" class="text-decoration-none text-black">
+                                        <img src="Assets/Images/island-3.png" class="card-img-top" alt="Island Image">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Lorem Ipsum Island</h5>
+                                            <p class="card-text">2.4 Hectares<br>May 24-29</p>
+                                            <p class="price">$320/Night</p>
+                                            <p><span class="rating">★ 4.95</span></p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Card 4 -->
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="card"><a href="page-10.html" class="text-decoration-none text-black">
+                                        <img src="Assets/Images/island-4.png" class="card-img-top" alt="Island Image">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Lorem Ipsum Island</h5>
+                                            <p class="card-text">2.4 Hectares<br>May 24-29</p>
+                                            <p class="price">$320/Night</p>
+                                            <p><span class="rating">★ 4.95</span></p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Add more cards as necessary -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
     </div>
 
-    <!-- Bootstrap 5 JavaScript Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Offcanvas Sidebar -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarOffcanvas" aria-labelledby="sidebarLabel">
+        <div class="offcanvas-header">
+            <h5 id="sidebarLabel">Menu</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="menu-item active mt-4 mb-2"><img src="Assets/Images/cabin-icon.png" alt="#"> Cabins</div>
+            <div class="menu-item Menu-hover mb-2"><img src="Assets/Images/beach-icon.png" alt="#"> Beach Front</div>
+            <div class="menu-item Menu-hover mb-2"><img src="Assets/Images/conferrence-icon.png"> Conference</div>
+            <div class="menu-item Menu-hover mb-2"><img src="Assets/Images/island-icon.png" alt="#"> Islands</div>
+            <div class="menu-item Menu-hover mb-2"><img src="Assets/Images/mountains-icons.png" alt="#"> Mountains</div>
+            <div class="menu-item Menu-hover mb-2"><img src="Assets/Images/lake-icon.png" alt="#"> Lake</div>
+            <div class="menu-item Menu-hover mb-2"><img src="Assets/Images/hotel-icon.png" alt="#"> Hotels</div>
+            <div class="menu-item Menu-hover mb-2"><img src="Assets/Images/tropical-icon.png" alt="#"> Tropical</div>
+            <div class="menu-item Menu-hover mb-2"><img src="Assets/Images/events-icon.png" alt="#"> Events</div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- jquery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="./JavaScript/page-32.js"></script>
+
+    <!-- Bootstrap v5 & Bootstrap Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"
+        rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </body>
 
 </html>
